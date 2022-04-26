@@ -1,0 +1,199 @@
+/*         phone         */
+.divMain {
+  height: 100vh;
+  background: url(../imgs/phoneEffect/phone.png) no-repeat;
+  background-position: 100% 0%;
+}
+.divMain img {
+  margin-top: 1.9rem;
+  margin-right: 1.13rem;
+  opacity: 0;
+  transition: opacity 1.5s ease-in;
+}
+.active {
+  opacity: 1 !important;
+  transition: opacity 1.5s ease-in;
+}
+
+/*      formLogin     */
+.logoInsta {
+  padding: 1.8rem 4.4rem;
+}
+.inputLogin {
+  display: block;
+  background-color: #fafafa;
+  padding: 0.55rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  font-size: 0.78rem;
+  width: 17rem;
+  margin-bottom: 0.4rem;
+}
+.inputLogin:focus-visible {
+  outline: none;
+  border: 1px solid #acadaf;
+}
+.inputLogin:focus::placeholder {
+  font-size: 0.55rem;
+  transform: translateY(-10px) translateX(-2px);
+  transition: all 0.2s linear;
+}
+.span-showPass {
+  bottom: 6.05rem;
+  right: 2.1rem;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.form {
+  display: grid;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+.btn-submit {
+  padding: 0.2rem;
+  font-size: 0.9rem;
+}
+.text-OR {
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+.facebook-style {
+  margin: 1rem 2rem 0rem 5rem;
+  font-weight: 500;
+}
+.facebook-a-style {
+  text-decoration: none;
+  color: #385185;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.fa-facebook-official {
+  font-size: 1.2rem;
+  margin-right: 0.6rem;
+}
+.Forget-a {
+  font-size: 0.75rem;
+  color: #385185;
+  text-decoration: none;
+  font-weight: 500;
+}
+.box-dontAccoutn {
+  padding: 1.2rem 4rem;
+  font-size: 0.9rem;
+  margin-top: 0.7rem;
+}
+.a-dontAccount {
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 0.4rem;
+}
+.boxs {
+  border: 1px solid #dee2e6;
+  background-color: white;
+}
+@media (max-width: 450px) {
+  .boxs {
+    border: none;
+    background-color: #fafafa;
+  }
+}
+
+/*        forgetPassword     */
+.lock {
+  background: url(../imgs/lock/lock.png) center center no-repeat;
+  width: 100px;
+  height: 100px;
+}
+.box-input {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+input {
+  padding: 0.4rem 0.4rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+  background-color: #fafafa;
+}
+input::placeholder {
+  font-size: 0.9rem;
+  color: #8e8e8e;
+}
+input:focus-visible {
+  outline: none;
+  border: 1px solid #acadaf;
+}
+input:focus::placeholder {
+  font-size: 0.7rem;
+  transform: translateY(-10px) translateX(-2px);
+  transition: all 0.2s linear;
+}
+.send-btn {
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.2rem 0rem;
+}
+.creat {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/*        footer       */
+.footer-a a,
+.metaSpan {
+  text-decoration: none;
+  color: rgb(142, 142, 142);
+  margin: 0.5rem;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+
+/*          formSignUp        */
+.p-singUp {
+  padding: 0.5rem 2rem 0rem 2rem;
+  color: #8e8e8e;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.2rem;
+}
+.form-signUp {
+  display: flex;
+  flex-direction: column;
+}
+.form-signUp input {
+  padding: 0.3rem 0.5rem;
+  margin-bottom: 0.4rem;
+  border-radius: 3px;
+}
+.form-signUp input::placeholder {
+  font-size: 0.8rem;
+}
+.form-signUp input:focus::placeholder {
+  font-size: 0.6rem;
+  transform: translateY(-10px) translateX(-2px);
+  transition: all 0.2s linear;
+}
+.btn-signUp {
+  font-size: 0.9rem;
+  padding: 0.2rem;
+  font-weight: 500;
+}
+.bottom-btn-p {
+  padding: 1rem 2.5rem;
+  font-size: 0.75rem;
+  color: #818181;
+  text-align: center;
+}
+.bottom-btn-p a {
+  text-decoration: none;
+  color: #818181;
+  font-weight: 500;
+}
