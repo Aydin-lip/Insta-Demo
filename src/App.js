@@ -7,15 +7,17 @@ import "./components/login Pages/style.css";
 import ForgetPassword from "./components/login Pages/forgetPass";
 import SignUp from "./components/login Pages/signUp";
 import Protect from "./components/login Pages/Protect";
+import Main from "./components/main Pages/main";
 
 class App extends Component {
   render() {
     return (
-      <Routes>
-        <Route path="/" element={<Protect />} />
-        <Route path="/accounts/create" element={<SignUp />} />
-        <Route path="/accounts/password/reset" element={<ForgetPassword />} />
-      </Routes>
+      // <Routes>
+      //   <Route path="/" element={<Protect />} />
+      //   <Route path="/accounts/create" element={<SignUp />} />
+      //   <Route path="/accounts/password/reset" element={<ForgetPassword />} />
+      // </Routes>
+      <Main />
     );
   }
 }
