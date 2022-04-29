@@ -29,7 +29,7 @@
 }
 .iconsNavbar {
   display: inline-block;
-  margin: 0.4rem 0.65rem;
+  margin: 0.5rem 0.65rem;
 }
 
 /*                     Main / Right                   */
@@ -63,7 +63,18 @@
   font-size: 0.8rem;
 }
 
-/*                      Main / Left                            */
+/*                      Main / Left / Story                           */
+.border-profile-story {
+  width: 64px;
+  border: 2px solid #f9533a00;
+  border-radius: 50%;
+  background: linear-gradient(189deg, #ff688b, #ff8d00);
+}
+.border-white-story {
+  border: 2px solid #fff2f2;
+  border-radius: 50%;
+  width: 60px;
+}
 
 /*                       Footer / Right / Footer                    */
 .footer-right ul {
