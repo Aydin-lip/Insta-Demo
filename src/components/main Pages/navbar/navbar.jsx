@@ -2,12 +2,16 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar navbar-light fixed-top bg-white border">
-        <div className="container">
+        <div className="container-lg container-fluid px-0 ps-lg-3">
           <div className="row w-100">
-            <div className="col-4 logoInsta">
+            <div className="col-1 d-none d-lg-block"></div>
+            <div
+              className="col-2 col-lg-3 ps-4 ps-lg-0 pt-2"
+              style={{ cursor: "pointer" }}
+            >
               <img src="/imgs/instaLogo/minLogo.png" alt="Logo Instagram" />
             </div>
-            <div className="col-4">
+            <div className="col-4 d-none d-md-block">
               <div className="position-relative">
                 <i className="fa fa-search icon-search-nav"></i>
                 <input
@@ -23,7 +27,10 @@ const Navbar = () => {
                 ></i>
               </div>
             </div>
-            <div className="col-4 ps-4">
+            <div
+              className="col-4 ps-4 ms-auto ms-lg-0"
+              style={{ width: "310px" }}
+            >
               <div className="iconsNavbar">
                 <a href="#">
                   <svg

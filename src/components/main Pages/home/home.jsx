@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <div className="container">
+        <div className="container pe-0">
           <div className="row">
             <div className="col-5 ms-auto"></div>
 
