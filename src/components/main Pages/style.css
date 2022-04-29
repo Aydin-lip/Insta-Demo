@@ -35,3 +35,57 @@
   display: inline-block;
   margin: 0.4rem 0.65rem;
 }
+
+/*                     Main / Right                   */
+.tag-a-acc {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+.name-acc {
+  padding: 0.4rem 1.2rem;
+  font-size: 0.9rem;
+}
+.a-blue-right {
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #29a7f1;
+}
+.see-all-right {
+  display: flex;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.div-user {
+  margin-top: 0.6rem;
+  padding-left: 0.3rem;
+}
+.nameBio-user {
+  padding: 0rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+/*                      Main / Left                            */
+
+/*                       Footer / Right / Footer                    */
+.footer-right ul {
+  padding: 0;
+  margin-top: 2rem;
+  margin-left: -0.3rem;
+  line-height: 15px;
+}
+.footer-right ul li {
+  margin: 0rem 0.1rem;
+  display: inline-block;
+  font-size: 0.75rem;
+}
+.footer-right ul li a {
+  color: #c7c7c7;
+  text-decoration: none;
+}
+.footer-right p {
+  color: #c7c7c7;
+  font-size: 0.8rem;
+}

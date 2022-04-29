@@ -1,8 +1,14 @@
+import Home from "./home/home";
 import Navbar from "./navbar/navbar";
 import "./style.css";
 
 const Main = () => {
-  return <Navbar />;
+  return (
+    <>
+      <Navbar />
+      <Home />
+    </>
+  );
 };
 
 export default Main;

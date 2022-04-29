@@ -1,7 +1,7 @@
 const Navbar = () => {
   return (
     <>
-      <nav className="navbar navbar-light bg-white border">
+      <nav className="navbar navbar-light fixed-top bg-white border">
         <div className="container">
           <div className="row w-100">
             <div className="col-4 logoInsta">
