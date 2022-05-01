@@ -34,8 +34,6 @@ const Navbar = () => {
               <div className="iconsNavbar">
                 <a href="#">
                   <svg
-                    aria-label="Home"
-                    className="_8-yf5 "
                     color="#262626"
                     fill="#262626"
                     height="24"
@@ -50,8 +48,6 @@ const Navbar = () => {
               <div className="iconsNavbar">
                 <a href="#">
                   <svg
-                    aria-label="Direct"
-                    className="_8-yf5 "
                     color="#262626"
                     fill="#262626"
                     height="24"
@@ -82,8 +78,6 @@ const Navbar = () => {
               <div className="iconsNavbar">
                 <a href="#">
                   <svg
-                    aria-label="New Post"
-                    className="_8-yf5 "
                     color="#262626"
                     fill="#262626"
                     height="24"
@@ -127,8 +121,6 @@ const Navbar = () => {
               <div className="iconsNavbar">
                 <a href="#">
                   <svg
-                    aria-label="Find People"
-                    className="_8-yf5 "
                     color="#262626"
                     fill="#262626"
                     height="24"
@@ -164,8 +156,6 @@ const Navbar = () => {
               <div className="iconsNavbar">
                 <a href="#">
                   <svg
-                    aria-label="Activity Feed"
-                    className="_8-yf5 "
                     color="#262626"
                     fill="#262626"
                     height="24"

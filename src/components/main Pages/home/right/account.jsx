@@ -6,7 +6,10 @@ class Account extends Component {
   render() {
     return (
       <>
-        <div className="container mt-5 pt-5" style={{ paddingRight: "6.7rem" }}>
+        <div
+          className="container mt-5 pt-5 position-fixed pe-0"
+          style={{ width: "340px" }}
+        >
           <div className="row">
             <div className="col d-flex align-items-center">
               <div className="">
