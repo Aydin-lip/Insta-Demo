@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper";
 
 import Story from "./story";
+import Live from "./live";
 
 class SwiperStory extends Component {
   render() {
@@ -23,6 +24,9 @@ class SwiperStory extends Component {
           modules={[Navigation]}
           className="mySwiper"
         >
+          <SwiperSlide>
+            <Live />
+          </SwiperSlide>
           <SwiperSlide>
             <Story />
           </SwiperSlide>

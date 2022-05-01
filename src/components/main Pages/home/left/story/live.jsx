@@ -1,26 +1,29 @@
 import { Component } from "react";
 
-class Story extends Component {
+class Live extends Component {
   render() {
     return (
       <>
         <a
           href="#"
-          className="text-decoration-none text-black"
+          className="text-decoration-none text-black position-relative"
           style={{ fontSize: ".75rem" }}
         >
-          <div className="border-profile-story">
+          <div className="border-profile-story border-profile-story-live">
             <div className="border-white-story">
               <img
-                className="rounded-circle"
-                src="/imgs/profile/leitoProfile.jpg"
+                className="rounded-circle filter-img-live"
+                src="/imgs/profile/userProfile.jpg"
                 width="56px"
                 alt="profile"
               />
             </div>
           </div>
+          <div className="iconLive">
+            <span>LIVE</span>
+          </div>
           <div className="text-center mt-1" style={{ width: "64px" }}>
-            <span>behzadleito</span>
+            <span>programer</span>
           </div>
         </a>
       </>
@@ -28,4 +31,4 @@ class Story extends Component {
   }
 }
 
-export default Story;
+export default Live;
