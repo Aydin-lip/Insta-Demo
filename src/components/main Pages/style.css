@@ -139,7 +139,54 @@
   font-weight: 500;
   cursor: pointer;
 }
-.input-comment:focus::placeholder {
+.iconB-post:hover {
+  filter: contrast(0);
+}
+.input-noPlace:focus::placeholder {
   transform: none;
   font-size: 0.9rem;
+}
+.comment-tag {
+  text-decoration: none;
+}
+.comment-tag:hover {
+  text-decoration: underline;
+}
+/*         modal/MoreOption          */
+.modal-content {
+  width: 0%;
+}
+.item-morOption:hover {
+  opacity: 0.7;
+}
+.cursor {
+  cursor: pointer;
+}
+.likeAnimation {
+  display: block;
+  animation: animLike 0.3s linear;
+}
+@keyframes animLike {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*                Modal/Share                 */
+.fw-500 {
+  font-weight: 500;
+}
+.close-btn-share {
+  font-size: 1.2rem;
+  position: absolute;
+  right: 7px;
+  top: 5px;
+}
+
+/*                  Modal/Comments              */
+.fs-8 {
+  font-size: 0.8rem;
 }
