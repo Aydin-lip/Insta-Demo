@@ -18,7 +18,7 @@ class MorOptions extends Component {
           <Modal.Body className="p-0">
             <div
               className="d-flex flex-column border bg-white p-1"
-              style={{ borderRadius: "10px", width: "400px" }}
+              style={{ borderRadius: "10px", maxWidth: "400px", width: "95vw" }}
             >
               <button className="border-0 item-morOption fw-09500 p-2 bg-white text-danger">
                 Report

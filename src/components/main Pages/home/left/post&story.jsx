@@ -7,8 +7,8 @@ class PostStory extends Component {
     return (
       <>
         <div
-          className="ms-auto"
-          style={{ maxWidth: "470px", marginTop: "4.8rem" }}
+          className="pt-sm-4 mt-5 ms-lg-auto w-100"
+          style={{ maxWidth: "470px" }}
         >
           <Storys />
           <BoxPost />

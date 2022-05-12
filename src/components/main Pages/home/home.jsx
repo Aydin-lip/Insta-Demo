@@ -8,11 +8,11 @@ class Home extends Component {
       <>
         <div className="container pe-0">
           <div className="row">
-            <div className="col-6 ms-auto pe-0">
+            <div className="col-12 d-flex justify-content-center col-lg-6 ms-auto px-0 ps-lg-3">
               <PostStory />
             </div>
 
-            <div className="col-5 me-5">
+            <div className="d-none d-lg-block col-5 me-5">
               <Account />
             </div>
           </div>

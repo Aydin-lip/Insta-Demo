@@ -185,8 +185,43 @@
   right: 7px;
   top: 5px;
 }
+.box-modal-share {
+  width: 550px;
+  border-radius: 10px;
+}
+.user-modal-share {
+  max-height: 220px;
+}
+@media (max-width: 576px) {
+  .user-modal-share {
+    max-height: 100%;
+  }
+  .box-modal-share {
+    width: 100%;
+    height: 100%;
+  }
+}
 
 /*                  Modal/Comments              */
 .fs-8 {
   font-size: 0.8rem;
+}
+.box-modal-comments {
+  height: 90%;
+  width: 75%;
+}
+@media (max-width: 991px) {
+  .box-modal-comments {
+    width: 90%;
+  }
+}
+@media (max-width: 768px) {
+  .box-modal-comments {
+    width: 60%;
+  }
+}
+@media (max-width: 576px) {
+  .box-modal-comments {
+    width: 90%;
+  }
 }

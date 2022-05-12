@@ -23,25 +23,37 @@ class SwiperPost extends Component {
             <img
               src="/imgs/post/post-1.jpg"
               alt="post"
-              className="w-100 h-100"
+              className=""
+              width="100%"
+              height="100%"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src="/imgs/post/post-2.jpg"
               alt="post"
-              className="w-100 h-100"
+              className=""
+              width="100%"
+              height="100%"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src="/imgs/post/post-3.jpg"
               alt="post"
-              className="w-100 h-100"
+              className=""
+              width="100%"
+              height="100%"
             />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/imgs/post/post.jpg" alt="post" className="w-100 h-100" />
+            <img
+              src="/imgs/post/post.jpg"
+              alt="post"
+              className=""
+              width="100%"
+              height="100%"
+            />
           </SwiperSlide>
         </Swiper>
       </>

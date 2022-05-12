@@ -3,7 +3,7 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-light fixed-top bg-white border">
         <div className="container-lg container-fluid px-0 ps-lg-3">
-          <div className="row w-100">
+          <div className="row" style={{ width: "110%" }}>
             <div className="col-1 d-none d-lg-block"></div>
             <div
               className="col-2 col-lg-3 ps-4 ps-lg-0 pt-2"

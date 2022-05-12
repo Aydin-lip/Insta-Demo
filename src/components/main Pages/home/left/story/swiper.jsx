@@ -13,12 +13,20 @@ class SwiperStory extends Component {
     return (
       <>
         <Swiper
-          slidesPerView={6}
+          slidesPerView={3}
           spaceBetween={20}
           slidesPerGroup={4}
           loopFillGroupWithBlank={true}
           pagination={{
             clickable: true,
+          }}
+          breakpoints={{
+            300: {
+              slidesPerView: 5,
+            },
+            400: {
+              slidesPerView: 6,
+            },
           }}
           navigation={true}
           modules={[Navigation]}
