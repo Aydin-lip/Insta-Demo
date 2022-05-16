@@ -19,3 +19,8 @@ export const changeMODALmoreOption = (data) => ({
   type: INFOR.changeModalMoreOption,
   payload: data,
 });
+
+export const changeNAVBARwindow = (data) => ({
+  type: INFOR.changeNavbarWindow,
+  payload: data,
+});

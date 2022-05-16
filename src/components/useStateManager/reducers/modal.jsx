@@ -2,12 +2,14 @@ import {
   changeModalShare,
   changeModalComment,
   changeModalMoreOption,
+  changeNavbarWindow,
 } from "../actions/typeActions";
 
 const initialState = {
   Share: false,
   Comment: false,
   MoreOption: [false, false, false],
+  NavbarWindow: [true, false, false, false, false],
 };
 
 const Modal = (state = initialState, { type, payload }) => {
@@ -20,6 +22,9 @@ const Modal = (state = initialState, { type, payload }) => {
 
     case changeModalMoreOption:
       return { ...state, MoreOption: payload };
+
+    case changeNavbarWindow:
+      return { ...state, NavbarWindow: payload };
 
     default:
       return state;

@@ -23,13 +23,23 @@
 .icon-close-nav {
   position: absolute;
   top: 0.9rem;
-  right: 3.1rem;
-  color: #838080;
+  left: 18rem;
+  color: #afafaf;
   cursor: pointer;
 }
 .iconsNavbar {
   display: inline-block;
   margin: 0.5rem 0.65rem;
+}
+.box-search {
+  position: absolute;
+  top: 3.2rem;
+  width: 370px;
+  height: 350px;
+  border-radius: 8px;
+}
+.hover-user-search:hover {
+  background-color: #fafafa;
 }
 
 /*                     Main / Right                   */
