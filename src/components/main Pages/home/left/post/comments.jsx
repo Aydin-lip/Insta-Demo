@@ -28,7 +28,7 @@ const Comments = (props) => {
             style={{ width: "100vw", height: "100vh" }}
           >
             <div className="d-md-flex box-modal-comments position-fixed">
-              <div className="d-flex w-100" style={{ overflow: "hidden" }}>
+              <div className="d-flex w-100 overflow-hidden">
                 <SwiperPost />
               </div>
 

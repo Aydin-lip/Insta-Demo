@@ -2,6 +2,7 @@ import UsersBox from "./boxUsers/users";
 import MessagesBox from "./messages/messages";
 
 const DirectInbox = () => {
+  document.title = "Inbox • Direct";
   return (
     <>
       <div className="container">

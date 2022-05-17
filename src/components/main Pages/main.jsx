@@ -1,3 +1,4 @@
+import NewPost from "./addPost/newPost";
 import DirectInbox from "./direct/inbox";
 import Home from "./home/home";
 import Navbar from "./navbar/navbar";
@@ -9,6 +10,7 @@ const Main = () => {
       <Navbar />
       {/* <Home /> */}
       <DirectInbox />
+      <NewPost />
     </>
   );
 };

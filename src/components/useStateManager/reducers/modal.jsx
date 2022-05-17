@@ -3,6 +3,7 @@ import {
   changeModalComment,
   changeModalMoreOption,
   changeNavbarWindow,
+  changeNewPost,
 } from "../actions/typeActions";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   Comment: false,
   MoreOption: [false, false, false],
   NavbarWindow: [true, false, false, false, false],
+  AddNewPost: false,
 };
 
 const Modal = (state = initialState, { type, payload }) => {
@@ -25,6 +27,9 @@ const Modal = (state = initialState, { type, payload }) => {
 
     case changeNavbarWindow:
       return { ...state, NavbarWindow: payload };
+
+    case changeNewPost:
+      return { ...state, AddNewPost: payload };
 
     default:
       return state;

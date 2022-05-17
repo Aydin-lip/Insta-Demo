@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 import { connect } from "react-redux";
-import { changeNAVBARwindow } from "../../useStateManager/actions/actions";
+import {
+  changeNAVBARwindow,
+  changeNEWPOST,
+} from "../../useStateManager/actions/actions";
 
 const Navbar = (props) => {
   const [search, setSearch] = useState(false);
@@ -541,6 +544,7 @@ const Navbar = (props) => {
                 className="iconsNavbar"
                 onClick={() => {
                   props.change([false, false, true, false, false]);
+                  props.changeNewPost(true);
                 }}
               >
                 <a href="#">
@@ -707,6 +711,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   change: (data) => dispatch(changeNAVBARwindow(data)),
+  changeNewPost: (data) => dispatch(changeNEWPOST(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
