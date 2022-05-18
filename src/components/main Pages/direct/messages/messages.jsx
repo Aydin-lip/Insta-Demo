@@ -1,4 +1,7 @@
-const MessagesBox = () => {
+import { connect } from "react-redux";
+import { changeNEWmessage } from "../../../useStateManager/actions/actions";
+
+const MessagesBox = (props) => {
   return (
     <>
       <div className="w-100 h-100 d-flex justify-content-center align-items-center">
@@ -47,7 +50,12 @@ const MessagesBox = () => {
           <p className="text-muted" style={{ fontSize: ".9rem" }}>
             Send private photos and messages to a friend or group.
           </p>
-          <button className="bg-primary border-0 rounded-3 text-white py-1 px-3 fw-09500">
+          <button
+            className="bg-primary border-0 rounded-3 text-white py-1 px-3 fw-09500"
+            onClick={() => {
+              props.changeNewMessage(true);
+            }}
+          >
             Send Message
           </button>
         </div>
@@ -56,4 +64,8 @@ const MessagesBox = () => {
   );
 };
 
-export default MessagesBox;
+const mapDispatchToProps = (dispatch) => ({
+  changeNewMessage: (data) => dispatch(changeNEWmessage(data)),
+});
+
+export default connect(null, mapDispatchToProps)(MessagesBox);

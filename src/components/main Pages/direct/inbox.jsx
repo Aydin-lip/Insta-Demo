@@ -1,5 +1,6 @@
 import UsersBox from "./boxUsers/users";
 import MessagesBox from "./messages/messages";
+import NewMessage from "./newMessage/newMessage";
 
 const DirectInbox = () => {
   document.title = "Inbox • Direct";
@@ -15,6 +16,7 @@ const DirectInbox = () => {
               <div className="d-flex border rounded bg-white h-100">
                 <UsersBox />
                 <MessagesBox />
+                <NewMessage />
               </div>
             </div>
           </div>

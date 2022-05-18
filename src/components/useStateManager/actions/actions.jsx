@@ -24,3 +24,7 @@ export const changeNEWPOST = (data) => ({
   type: INFOR.changeNewPost,
   payload: data,
 });
+export const changeNEWmessage = (data) => ({
+  type: INFOR.changeNewMessage,
+  payload: data,
+});

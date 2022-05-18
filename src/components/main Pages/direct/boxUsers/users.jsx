@@ -1,4 +1,7 @@
-const UsersBox = () => {
+import { connect } from "react-redux";
+import { changeNEWmessage } from "../../../useStateManager/actions/actions";
+
+const UsersBox = (props) => {
   return (
     <>
       <div
@@ -23,7 +26,12 @@ const UsersBox = () => {
                 </svg>
               </span>
             </button>
-            <div className="position-absolute end-0 cursor">
+            <div
+              className="position-absolute end-0 cursor"
+              onClick={() => {
+                props.changeNewMessage(true);
+              }}
+            >
               <svg
                 color="#262626"
                 fill="#262626"
@@ -212,4 +220,8 @@ const UsersBox = () => {
   );
 };
 
-export default UsersBox;
+const mapDispatchToProps = (dispatch) => ({
+  changeNewMessage: (data) => dispatch(changeNEWmessage(data)),
+});
+
+export default connect(null, mapDispatchToProps)(UsersBox);

@@ -35,10 +35,43 @@ const NewPost = (props) => {
               }}
             >
               <div
-                className="border-bottom text-center p-2"
+                className="border-bottom text-center p-2 position-relative"
                 style={{ fontWeight: "500" }}
               >
                 Create new post
+                <span
+                  className="position-absolute d-block d-sm-none"
+                  style={{ top: "5px", right: "1rem" }}
+                >
+                  <svg
+                    color="#262626"
+                    fill="#262626"
+                    height="18"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    width="18"
+                  >
+                    <polyline
+                      fill="none"
+                      points="20.643 3.357 12 12 3.353 20.647"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                    ></polyline>
+                    <line
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                      x1="20.649"
+                      x2="3.354"
+                      y1="20.649"
+                      y2="3.354"
+                    ></line>
+                  </svg>
+                </span>
               </div>
               <div
                 className="d-flex justify-content-center align-items-center"
