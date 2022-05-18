@@ -1,5 +1,8 @@
 import { connect } from "react-redux";
-import { changeNEWmessage } from "../../../useStateManager/actions/actions";
+import {
+  changeNEWmessage,
+  changeNEWaccount,
+} from "../../../useStateManager/actions/actions";
 
 const UsersBox = (props) => {
   return (
@@ -8,9 +11,14 @@ const UsersBox = (props) => {
         className="border-end w-100 position-relative"
         style={{ maxWidth: "360px" }}
       >
-        <div className="border-bottom py-2 px-3 position-absolute start-0 end-0 top-0">
+        <div className="border-bottom py-3 px-3 position-absolute start-0 end-0 top-0">
           <div className="d-flex align-items-center justify-content-center position-relative">
-            <button className="btn fw-500">
+            <button
+              className="border-0 bg-white fw-500"
+              onClick={() => {
+                props.changeNewAccount(true);
+              }}
+            >
               <span className="">aydin.lip</span>
               <span className="p-1">
                 <svg
@@ -73,7 +81,7 @@ const UsersBox = (props) => {
         </div>
         <div
           className="border-bottom position-absolute start-0 end-0"
-          style={{ top: "3.5rem" }}
+          style={{ top: "3.7rem" }}
         >
           <button
             className="px-3 py-2 bg-white fw-09500 text-black"
@@ -85,7 +93,7 @@ const UsersBox = (props) => {
             GENERAL
           </button>
         </div>
-        <div className="h-100" style={{ paddingTop: "6rem" }}>
+        <div className="h-100" style={{ paddingTop: "6.6rem" }}>
           <div className="h-100 overflow-auto">
             <div className="cursor hover-user-search d-flex px-3 py-2">
               <div className="px-1">
@@ -222,6 +230,7 @@ const UsersBox = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   changeNewMessage: (data) => dispatch(changeNEWmessage(data)),
+  changeNewAccount: (data) => dispatch(changeNEWaccount(data)),
 });
 
 export default connect(null, mapDispatchToProps)(UsersBox);

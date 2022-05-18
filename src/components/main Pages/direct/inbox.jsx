@@ -1,6 +1,7 @@
 import UsersBox from "./boxUsers/users";
 import MessagesBox from "./messages/messages";
 import NewMessage from "./newMessage/newMessage";
+import NewAccount from "./addAccount/newAccount";
 
 const DirectInbox = () => {
   document.title = "Inbox • Direct";
@@ -17,6 +18,7 @@ const DirectInbox = () => {
                 <UsersBox />
                 <MessagesBox />
                 <NewMessage />
+                <NewAccount />
               </div>
             </div>
           </div>

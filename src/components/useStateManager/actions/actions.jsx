@@ -28,3 +28,7 @@ export const changeNEWmessage = (data) => ({
   type: INFOR.changeNewMessage,
   payload: data,
 });
+export const changeNEWaccount = (data) => ({
+  type: INFOR.changeNewAccount,
+  payload: data,
+});
