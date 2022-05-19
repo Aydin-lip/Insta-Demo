@@ -9,3 +9,4 @@ export const changeNewMessage = "CHANGE-NEW-MESSAGE";
 export const changeNewAccount = "CHANGE-NEW-ACCOUNT";
 export const changeBoxMessage = "CHANGE-BOX-MESSAGE";
 export const changeDetailsDirect = "CHANGE-DETAILS-DIRECT";
+export const changeActivity = "CHANGE-ACTIVITY";

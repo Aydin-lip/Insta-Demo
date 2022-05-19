@@ -41,6 +41,12 @@
 .hover-user-search:hover {
   background-color: #fafafa;
 }
+.dropdown-toggle::after {
+  display: none;
+}
+.boxShadow {
+  box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), 0.0975);
+}
 
 /*                     Main / Right                   */
 .tag-a-acc {
@@ -270,4 +276,24 @@
   border: 2px solid white;
   position: absolute;
   bottom: -15px;
+}
+.active-user-directTop {
+  width: 12px;
+  height: 12px;
+  background: #78de45;
+  border-radius: 50%;
+  border: 2.5px solid white;
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+}
+
+/*                           Activity                           */
+.box-activity {
+  max-width: 500px;
+  max-height: 350px;
+  min-height: 100px;
+  width: 500px;
+  right: -40px;
+  top: 40px;
 }

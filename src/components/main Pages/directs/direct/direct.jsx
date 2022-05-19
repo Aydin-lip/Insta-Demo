@@ -15,13 +15,16 @@ const Direct = (props) => {
           style={{ height: "59px", zIndex: "3" }}
         >
           <div className="ms-2 pt-1 d-flex align-items-center cursor">
-            <img
-              src="/imgs/profile/leitoProfile.jpg"
-              width="24px"
-              height="24px"
-              alt="profile"
-              className="rounded-circle"
-            />
+            <div className="position-relative">
+              <img
+                src="/imgs/profile/leitoProfile.jpg"
+                width="24px"
+                height="24px"
+                alt="profile"
+                className="rounded-circle"
+              />
+              <div className="active-user-directTop"></div>
+            </div>
             <div className="ms-2 ps-1">
               <h6 className="mb-0" style={{ fontWeight: "500" }}>
                 mahdi.p
@@ -83,7 +86,6 @@ const Direct = (props) => {
           className="overflow-auto position-absolute start-0 end-0 px-3"
           style={{ top: "2.5rem", bottom: "5.3rem" }}
         >
-          <br />
           <br />
           <br />
           <br />

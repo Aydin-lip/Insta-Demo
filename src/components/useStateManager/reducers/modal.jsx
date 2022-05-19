@@ -8,6 +8,7 @@ import {
   changeNewAccount,
   changeBoxMessage,
   changeDetailsDirect,
+  changeActivity,
 } from "../actions/typeActions";
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   MessageGeneral: false,
   DetailsDirect: false,
   AddNewPost: false,
+  Activity: false,
 };
 
 const Modal = (state = initialState, { type, payload }) => {
@@ -50,6 +52,9 @@ const Modal = (state = initialState, { type, payload }) => {
 
     case changeNewPost:
       return { ...state, AddNewPost: payload };
+
+    case changeActivity:
+      return { ...state, Activity: payload };
 
     default:
       return state;

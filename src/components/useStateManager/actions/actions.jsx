@@ -40,3 +40,7 @@ export const changeDETAILSdirect = (data) => ({
   type: INFOR.changeDetailsDirect,
   payload: data,
 });
+export const changeACTIVITY = (data) => ({
+  type: INFOR.changeActivity,
+  payload: data,
+});
