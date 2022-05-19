@@ -8,10 +8,19 @@ import ForgetPassword from "./components/login Pages/forgetPass";
 import SignUp from "./components/login Pages/signUp";
 import Protect from "./components/login Pages/Protect";
 import Main from "./components/main Pages/main";
+import FirstLogo from "./components/firstLogoInsta";
 
 class App extends Component {
+  state = {
+    logo: true,
+  };
   render() {
-    return (
+    setTimeout(() => {
+      this.setState({ logo: false });
+    }, 1000);
+    return this.state.logo ? (
+      <FirstLogo />
+    ) : (
       // <Routes>
       //   <Route path="/" element={<Protect />} />
       //   <Route path="/accounts/create" element={<SignUp />} />

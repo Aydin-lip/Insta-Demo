@@ -1,5 +1,4 @@
 import { Component } from "react";
-import Home from "../home";
 import Login from "./login";
 
 class Protect extends Component {
@@ -15,7 +14,7 @@ class Protect extends Component {
   }
 
   render() {
-    return <>{this.state.account ? <Home /> : <Login />}</>;
+    return <>{this.state.account ? null : <Login />}</>;
   }
 }
 
