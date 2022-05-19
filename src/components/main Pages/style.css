@@ -235,3 +235,39 @@
     width: 90%;
   }
 }
+
+/*                        Directs/Users                    */
+.active-btn-direct {
+  border-bottom: 1px solid black !important;
+  color: black !important;
+}
+
+/*                          Directs/Direct                 */
+.active-user {
+  width: 20px;
+  height: 20px;
+  background: #78de45;
+  border-radius: 50%;
+  border: 3.5px solid white;
+  position: absolute;
+  bottom: 0px;
+  right: 5px;
+}
+.fs-09 {
+  font-size: 0.9rem;
+}
+
+/*                    Direct/MessageText                    */
+.LikeMessage {
+  width: 30px;
+  height: 30px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #f1f1f1;
+  border: 2px solid white;
+  position: absolute;
+  bottom: -15px;
+}

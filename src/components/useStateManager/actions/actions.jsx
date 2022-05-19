@@ -32,3 +32,11 @@ export const changeNEWaccount = (data) => ({
   type: INFOR.changeNewAccount,
   payload: data,
 });
+export const changeBOXmessage = (data) => ({
+  type: INFOR.changeBoxMessage,
+  payload: data,
+});
+export const changeDETAILSdirect = (data) => ({
+  type: INFOR.changeDetailsDirect,
+  payload: data,
+});

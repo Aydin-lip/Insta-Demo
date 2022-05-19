@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { changeNEWmessage } from "../../../useStateManager/actions/actions";
 
 const MessagesBox = (props) => {
+  document.title = "Inbox • Direct";
   return (
     <>
       <div className="w-100 h-100 d-flex justify-content-center align-items-center">
