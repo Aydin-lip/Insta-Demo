@@ -1,3 +1,4 @@
+import Profile from "./account/profile/profile";
 import NewPost from "./addPost/newPost";
 import DirectInbox from "./directs/inbox";
 import Home from "./home/home";
@@ -9,7 +10,8 @@ const Main = () => {
     <>
       <Navbar />
       {/* <Home /> */}
-      <DirectInbox />
+      {/* <DirectInbox /> */}
+      <Profile />
       <NewPost />
     </>
   );

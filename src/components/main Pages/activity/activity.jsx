@@ -8,9 +8,6 @@ import { changeACTIVITY } from "../../useStateManager/actions/actions";
 
 const Activity = (props) => {
   const [loading, setLoading] = useState(true);
-  //   useEffect(() => {
-  //       console.log
-  //   }, []);
   return props.Activity ? (
     <>
       <div

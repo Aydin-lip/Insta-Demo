@@ -44,3 +44,7 @@ export const changeACTIVITY = (data) => ({
   type: INFOR.changeActivity,
   payload: data,
 });
+export const changeADDsavedBox = (data) => ({
+  type: INFOR.changeAddSavedBox,
+  payload: data,
+});

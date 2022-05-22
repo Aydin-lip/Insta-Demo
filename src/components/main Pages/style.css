@@ -262,6 +262,9 @@
 .fs-09 {
   font-size: 0.9rem;
 }
+.fs-08 {
+  font-size: 0.8rem;
+}
 
 /*                    Direct/MessageText                    */
 .LikeMessage {
@@ -296,4 +299,87 @@
   width: 500px;
   right: -40px;
   top: 40px;
+}
+
+/*                         Account                   */
+
+.profile {
+  padding: 0 9.5rem;
+}
+.bottom-profile {
+  padding: 0 5.5rem;
+}
+@media (max-width: 991px) {
+  .profile {
+    padding: 0;
+  }
+  .bottom-profile {
+    padding: 0;
+  }
+}
+
+.btn-profile {
+  letter-spacing: 1px;
+}
+.bg-none {
+  background-color: #ffffff00;
+}
+.active-btn-profile {
+  border-top: 1px solid black !important;
+  opacity: 1 !important;
+}
+.btn-profile-sm {
+  filter: grayscale(1);
+  border: 0;
+  background-color: #ffffff00;
+}
+.active-btn-profile-sm {
+  filter: grayscale(0) !important;
+}
+
+/*                           Account/Posts                */
+.img-post-hover:hover .show-likeANDcomment {
+  display: flex !important;
+}
+
+/*                          Account/Saved                      */
+.saved-box-img {
+  width: 50%;
+  height: 100%;
+  background: center center no-repeat;
+  background-size: cover;
+}
+
+.saved-box-img.img1 {
+  border-top-left-radius: 4px;
+}
+.saved-box-img.img2 {
+  border-top-right-radius: 4px;
+}
+.saved-box-img.img3 {
+  border-bottom-left-radius: 4px;
+}
+.saved-box-img.img4 {
+  border-bottom-right-radius: 4px;
+}
+.mb-2p {
+  margin-bottom: 2px;
+}
+.me-2p {
+  margin-right: 2px;
+}
+.box-saved-hover {
+  background-color: #00000030;
+}
+.box-saved-hover:hover {
+  cursor: pointer;
+  background-color: #00000000;
+}
+
+/*                              Account/tagged                    */
+.contants-profile-logo {
+  background: url(/public/imgs/instaLogo/allLogo.png);
+  width: 65px;
+  height: 65px;
+  background-position: -255px -267px;
 }
