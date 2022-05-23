@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import FooterProfile from "./footer";
 import ProfilePosts from "./posts/posts";
 import SavedProfile from "./saved/saved";
@@ -7,6 +8,19 @@ import ProfileSmUp from "./smUp";
 import ProfileSmDown from "./smDown";
 
 const Profile = () => {
+  useEffect(() => {
+    const btns = document.querySelectorAll(".btn-profile");
+    btns.forEach((b) => {
+      b.classList.remove("active-btn-profile");
+    });
+    if (document.location.pathname === "/aydin.lip") {
+      btns[0].classList.add("active-btn-profile");
+    } else if (document.location.pathname === "/aydin.lip/saved") {
+      btns[1].classList.add("active-btn-profile");
+    } else if (document.location.pathname === "/aydin.lip/tagged") {
+      btns[2].classList.add("active-btn-profile");
+    }
+  });
   return (
     <>
       <div className="">
@@ -194,8 +208,11 @@ const Profile = () => {
             <Routes>
               <Route
                 path="/aydin.lip"
+                element={<ProfilePosts data={{ Posts: [] }} />}
+              />
+              <Route
+                path="/aydin.lip/:string"
                 element={
-                  // <ProfilePosts data={{ Posts: [] }} />
                   <ProfilePosts
                     data={{
                       Posts: [

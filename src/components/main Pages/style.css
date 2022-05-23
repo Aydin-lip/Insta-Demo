@@ -172,6 +172,9 @@
 .modal-content {
   width: 0%;
 }
+.item-morOption {
+  padding: 0.8rem;
+}
 .item-morOption:hover {
   opacity: 0.7;
 }

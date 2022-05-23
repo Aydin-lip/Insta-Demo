@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import Followers from "./follow/followers";
+import Following from "./follow/following";
 
 const ProfileSmDown = () => {
   return (
@@ -88,24 +90,8 @@ const ProfileSmDown = () => {
               <span className="text-muted">posts</span>
             </div>
           </div>
-          <div className="col-4 d-flex justify-content-center align-items-center">
-            <div
-              className="d-flex flex-column text-center cursor"
-              style={{ marginBottom: "-2px" }}
-            >
-              <span className="fw-500">4,401</span>
-              <span className="text-muted">followers</span>
-            </div>
-          </div>
-          <div className="col-4 d-flex justify-content-center align-items-center">
-            <div
-              className="d-flex flex-column text-center cursor"
-              style={{ marginBottom: "-2px" }}
-            >
-              <span className="fw-500">246</span>
-              <span className="text-muted">following</span>
-            </div>
-          </div>
+          <Followers Followers="4,398" />
+          <Following Following="245" />
         </div>
         <div className="row border-top border-bottom">
           <button className="col-4 btn-profile-sm active-btn-profile-sm position-relative d-flex justify-content-center align-items-center p-2">
