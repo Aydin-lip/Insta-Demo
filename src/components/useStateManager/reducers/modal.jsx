@@ -10,6 +10,7 @@ import {
   changeDetailsDirect,
   changeActivity,
   changeAddSavedBox,
+  changeProfile,
 } from "../actions/typeActions";
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
   AddNewPost: false,
   Activity: false,
   AddSavedBox: false,
+  ProfileAvatar: false,
 };
 
 const Modal = (state = initialState, { type, payload }) => {
@@ -60,6 +62,9 @@ const Modal = (state = initialState, { type, payload }) => {
 
     case changeAddSavedBox:
       return { ...state, AddSavedBox: payload };
+
+    case changeProfile:
+      return { ...state, ProfileAvatar: payload };
 
     default:
       return state;

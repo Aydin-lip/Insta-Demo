@@ -11,3 +11,4 @@ export const changeBoxMessage = "CHANGE-BOX-MESSAGE";
 export const changeDetailsDirect = "CHANGE-DETAILS-DIRECT";
 export const changeActivity = "CHANGE-ACTIVITY";
 export const changeAddSavedBox = "CHANGE-ADD-SAVED-BOX";
+export const changeProfile = "CHANGE-PROFILE";

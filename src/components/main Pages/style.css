@@ -339,6 +339,13 @@
 .active-btn-profile-sm {
   filter: grayscale(0) !important;
 }
+.py-08 {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+.fw-700 {
+  font-weight: 700;
+}
 
 /*                           Account/Posts                */
 .img-post-hover:hover .show-likeANDcomment {
@@ -385,4 +392,21 @@
   width: 65px;
   height: 65px;
   background-position: -255px -267px;
+}
+
+/*                               Settings                         */
+.settings {
+  padding: 0.9rem 0;
+}
+.settings:hover {
+  background-color: #fafafa !important;
+  border-left: 2px solid rgb(179 179 179) !important;
+}
+.settings.active {
+  border-left: 2px solid black !important;
+  font-weight: 500;
+  background-color: #efefefcd !important;
+}
+.lineHeght-18 {
+  line-height: 18px;
 }

@@ -3,7 +3,11 @@ import Followers from "./follow/followers";
 import Following from "./follow/following";
 import SettingProfile from "./setting";
 
-const ProfileSmUp = () => {
+import { changePROFILE } from "../../../useStateManager/actions/actions";
+import { connect } from "react-redux";
+import ChangeProfile from "./changeProfile";
+
+const ProfileSmUp = (props) => {
   return (
     <>
       <div
@@ -17,7 +21,10 @@ const ProfileSmUp = () => {
               width="150"
               height="150"
               alt="profile"
-              className="rounded-circle"
+              className="rounded-circle cursor"
+              onClick={() => {
+                props.changeProfile(true);
+              }}
             />
           </div>
         </div>
@@ -66,8 +73,13 @@ const ProfileSmUp = () => {
           </div>
         </div>
       </div>
+      <ChangeProfile />
     </>
   );
 };
 
-export default ProfileSmUp;
+const mapDispatchToProps = (dispatch) => ({
+  changeProfile: (data) => dispatch(changePROFILE(data)),
+});
+
+export default connect(null, mapDispatchToProps)(ProfileSmUp);

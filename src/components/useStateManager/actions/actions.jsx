@@ -48,3 +48,7 @@ export const changeADDsavedBox = (data) => ({
   type: INFOR.changeAddSavedBox,
   payload: data,
 });
+export const changePROFILE = (data) => ({
+  type: INFOR.changeProfile,
+  payload: data,
+});
