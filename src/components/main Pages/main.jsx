@@ -11,9 +11,9 @@ const Main = () => {
     <>
       <Navbar />
       {/* <Home /> */}
-      {/* <DirectInbox /> */}
+      <DirectInbox />
       {/* <Profile /> */}
-      <Settings />
+      {/* <Settings /> */}
       <NewPost />
     </>
   );

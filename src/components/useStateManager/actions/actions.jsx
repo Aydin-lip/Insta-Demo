@@ -4,6 +4,7 @@ export const changePostInformation = (data) => ({
   type: INFOR.changePostInformation,
   payload: data,
 });
+
 export const changeMODALshare = (data) => ({
   type: INFOR.changeModalShare,
   payload: data,
@@ -50,5 +51,14 @@ export const changeADDsavedBox = (data) => ({
 });
 export const changePROFILE = (data) => ({
   type: INFOR.changeProfile,
+  payload: data,
+});
+
+export const ACCOUNT = (data) => ({
+  type: INFOR.Account,
+  payload: data,
+});
+export const LOGGIN = (data) => ({
+  type: INFOR.Loggin,
   payload: data,
 });

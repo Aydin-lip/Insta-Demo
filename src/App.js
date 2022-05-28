@@ -21,12 +21,12 @@ class App extends Component {
     return this.state.logo ? (
       <FirstLogo />
     ) : (
-      // <Routes>
-      //   <Route path="/" element={<Protect />} />
-      //   <Route path="/accounts/create" element={<SignUp />} />
-      //   <Route path="/accounts/password/reset" element={<ForgetPassword />} />
-      // </Routes>
-      <Main />
+      <Routes>
+        <Route path="/" element={<Protect />} />
+        <Route path="/accounts/create" element={<SignUp />} />
+        <Route path="/accounts/password/reset" element={<ForgetPassword />} />
+      </Routes>
+      // <Main />
     );
   }
 }

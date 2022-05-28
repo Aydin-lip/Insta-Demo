@@ -1,8 +1,46 @@
+import { useState, useRef } from "react";
 import { FloatingLabel, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import GetApp from "../getApp/getApp";
 
-const FormLogin = () => {
+import { LOGGIN } from "../../useStateManager/actions/actions";
+import { connect } from "react-redux";
+
+const FormLogin = (props) => {
+  const [Disabled, setDisabled] = useState(true);
+  const [Username, setUsername] = useState(false);
+  const [Password, setPassword] = useState(false);
+
+  const UserName = useRef();
+  const Ppassword = useRef();
+
+  const changeInputs = () => {
+    if (
+      UserName.current.value.length > 3 &&
+      Ppassword.current.value.length >= 8
+    ) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
+  const onClickToLogin = () => {
+    if (
+      UserName.current.value === props.Account.username ||
+      UserName.current.value === props.Account.email
+    ) {
+      setUsername(false);
+      if (Ppassword.current.value === props.Account.password) {
+        setPassword(false);
+        props.changeLogin(true);
+      } else {
+        setPassword(true);
+      }
+    } else {
+      setUsername(true);
+    }
+  };
+
   return (
     <>
       <div className="row ps-2 pt-3">
@@ -12,16 +50,27 @@ const FormLogin = () => {
               <div className="logoInsta" style={{ cursor: "pointer" }}>
                 <img src="/imgs/instaLogo/instaLogo.png" alt="instaLogo" />
               </div>
-              <form className="form position-relative">
+              <form
+                className="form position-relative"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                }}
+              >
                 <input
                   className="inputLogin input-text"
                   type="Text"
-                  placeholder="Phone number, username, or email"
+                  onChange={changeInputs}
+                  ref={UserName}
+                  placeholder="username, or email"
                 />
                 <input
                   className="inputLogin mb-3 input-password"
                   type="Password"
-                  onChange={onCheangeHandle}
+                  onChange={() => {
+                    onCheangeHandle();
+                    changeInputs();
+                  }}
+                  ref={Ppassword}
                   placeholder="Password"
                 />
                 <span
@@ -33,10 +82,31 @@ const FormLogin = () => {
                 <Button
                   variant="primary"
                   className="fw-bold btn-submit"
-                  disabled={true}
+                  onClick={onClickToLogin}
+                  disabled={Disabled}
                 >
                   Log In
                 </Button>
+                {Username || Password ? (
+                  <p
+                    className="fs-09 text-danger text-center mt-3"
+                    style={{ width: "17.1rem" }}
+                  >
+                    {Username ? (
+                      <>
+                        The username you entered doesn't belong to an account.
+                        Please check your username and try again.
+                      </>
+                    ) : null}
+                    {Password ? (
+                      <>
+                        Sorry, your password was incorrect. Please double-check
+                        your password.
+                      </>
+                    ) : null}
+                  </p>
+                ) : null}
+
                 <div className="row mt-2 text-muted">
                   <div className="col-5">
                     <hr />
@@ -49,10 +119,10 @@ const FormLogin = () => {
               </form>
 
               <div className="facebook-style">
-                <a href="#" className="facebook-a-style">
+                <span className="facebook-a-style cursor">
                   <i className="fa fa-facebook-official"></i>
                   Log in with Facebook
-                </a>
+                </span>
               </div>
               <span className="p-3 d-block text-center">
                 <Link to="/accounts/password/reset" className="Forget-a">
@@ -97,4 +167,11 @@ const FormLogin = () => {
   }
 };
 
-export default FormLogin;
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
+const mapDispatchToProps = (dispatch) => ({
+  changeLogin: (data) => dispatch(LOGGIN(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormLogin);

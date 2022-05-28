@@ -1,7 +1,41 @@
+import { useRef, useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 import Navbar from "./navbar";
 
-const ForgetPass = () => {
+const ForgetPass = (props) => {
+  const [Disabled, setDisabled] = useState(true);
+  const [Show, setShow] = useState(false);
+  const [User, setUser] = useState(false);
+  const [Loading, setLoading] = useState(false);
+
+  const UserName = useRef();
+
+  const changeInput = () => {
+    if (UserName.current.value.length > 3) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
+  const clickFotgetPassword = () => {
+    setLoading(true);
+    setTimeout(() => {
+      if (
+        UserName.current.value === props.Account.username ||
+        UserName.current.value === props.Account.email
+      ) {
+        setShow(true);
+        setUser(false);
+      } else {
+        setUser(true);
+        setShow(false);
+      }
+      setLoading(false);
+    }, 2000);
+  };
+
   return (
     <>
       <Navbar />
@@ -20,11 +54,42 @@ const ForgetPass = () => {
                 </p>
               </div>
               <div className="box-input pt-2">
-                <input type="text" placeholder="Email, Phone, or Username" />
-                <button className="btn btn-primary send-btn" disabled={true}>
-                  Send Login Link
+                <input
+                  type="text"
+                  ref={UserName}
+                  onChange={changeInput}
+                  placeholder="Email, or Username"
+                />
+                <button
+                  className="btn btn-primary send-btn"
+                  onClick={clickFotgetPassword}
+                  disabled={Disabled}
+                >
+                  {Loading ? (
+                    <PulseLoader size="5px" margin="2px" />
+                  ) : (
+                    "Send Login Link"
+                  )}
                 </button>
               </div>
+              {User ? (
+                <>
+                  <span className="fs-08 text-danger d-block text-center mt-3 fw-500">
+                    The username you entered doesn't belong to an account.
+                    Please check your username and try again.
+                  </span>
+                </>
+              ) : null}
+              {Show ? (
+                <>
+                  <span className="fs-08 text-primary d-block text-center mt-3 fw-500">
+                    Your Account Password:
+                    <span className="fs-09 ms-1 fw-500">
+                      {props.Account.password}
+                    </span>
+                  </span>
+                </>
+              ) : null}
               <div className="row mt-3 pt-2 text-muted">
                 <div className="col-5">
                   <hr />
@@ -58,4 +123,8 @@ const ForgetPass = () => {
   );
 };
 
-export default ForgetPass;
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
+
+export default connect(mapStateToProps)(ForgetPass);

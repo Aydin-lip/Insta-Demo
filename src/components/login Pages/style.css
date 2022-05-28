@@ -39,7 +39,7 @@
   transition: all 0.2s linear;
 }
 .span-showPass {
-  bottom: 6.05rem;
+  top: 3.3rem;
   right: 2.1rem;
   font-weight: 500;
   font-size: 0.85rem;

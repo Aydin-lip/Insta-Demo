@@ -1,21 +1,13 @@
-import { Component } from "react";
+import { connect } from "react-redux";
+import Main from "../main Pages/main";
 import Login from "./login";
 
-class Protect extends Component {
-  constructor() {
-    super();
-    this.state = {
-      account: "",
-    };
-  }
-  componentDidMount() {
-    let response = localStorage.getItem("account");
-    this.setState({ account: response });
-  }
+const Protect = (props) => {
+  return <>{props.Loggin ? <Main /> : <Login />}</>;
+};
 
-  render() {
-    return <>{this.state.account ? null : <Login />}</>;
-  }
-}
+const mapStateToProps = (state) => ({
+  Loggin: state.Information.Loggin,
+});
 
-export default Protect;
+export default connect(mapStateToProps)(Protect);
