@@ -15,7 +15,7 @@ const Message = (props) => {
           <p className="mb-0 py-1" style={{ fontSize: ".9rem" }}>
             {props.data.Text}
           </p>
-          <div className="LikeMessage d-none end-0">
+          <div className="LikeMessage cursor d-none end-0">
             <span>❤</span>
           </div>
         </div>
@@ -45,7 +45,7 @@ const Message = (props) => {
           <p className="mb-0 py-1" style={{ fontSize: ".9rem" }}>
             {props.data.Text}
           </p>
-          <div className="LikeMessage d-none start-0">
+          <div className="LikeMessage cursor d-none start-0">
             <span>❤</span>
           </div>
         </div>

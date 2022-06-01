@@ -63,8 +63,8 @@ const Details = (props) => {
               </button>
             </div>
             <p className="text-muted m-0 fs-09 pt-2">
-              mahdi_ven12 won't know they've been moved. You can move them back
-              to Primary anytime.
+              <span className="fw-500">{props.data.username}</span> won't know
+              they've been moved. You can move them back to Primary anytime.
             </p>
           </div>
           <div className="border-bottom py-3">
@@ -74,19 +74,16 @@ const Details = (props) => {
             <div className="cursor hover-user-search d-flex px-3 py-2">
               <div className="px-1 ps-0">
                 <img
-                  src="/imgs/profile/leitoProfile.jpg"
+                  src={props.data.profile}
                   alt="profile photo"
                   width="56px"
                   height="56px"
                   className="rounded-circle"
                 />
               </div>
-              <div
-                className="d-flex flex-column px-2 justify-content-center"
-                style={{ fontSize: ".9rem" }}
-              >
-                <span className="fw-500">mahdi_ven12</span>
-                <span className="text-muted">mahdi.p</span>
+              <div className="d-flex flex-column px-2 justify-content-center fs-09">
+                <span className="fw-500">{props.data.username}</span>
+                <span className="text-muted">{props.data.name}</span>
               </div>
             </div>
           </div>

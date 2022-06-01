@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   changeNEWmessage,
   changeNEWaccount,
@@ -7,7 +9,25 @@ import {
 import User from "./user";
 import UserLoading from "./userLoading";
 
+import MessagesBox from "../messages/messages";
+import MessagesGeneral from "../messages/messagesGeneral";
+import Direct from "../direct/direct";
+import Details from "../direct/details";
+
 const UsersBox = (props) => {
+  const navigate = useNavigate();
+  let location = document.location.pathname;
+  useEffect(() => {
+    const btnPRI = document.querySelector(".btn-pri");
+    const btnGEN = document.querySelector(".btn-gen");
+    if (location === "/direct/inbox/general") {
+      btnGEN.classList.add("active-btn-direct");
+      props.changeBoxMessage(true);
+    } else {
+      btnPRI.classList.add("active-btn-direct");
+    }
+  }, []);
+
   return (
     <>
       <div
@@ -87,10 +107,10 @@ const UsersBox = (props) => {
           style={{ top: "3.7rem" }}
         >
           <button
-            className="px-3 py-2 bg-white fw-09500 border-0 text-muted btn-pri active-btn-direct"
+            className="px-3 py-2 bg-white fw-09500 border-0 text-muted btn-pri"
             onClick={() => {
               changeBTN();
-              props.changeBoxMessage(false);
+              navigate("/direct/inbox");
             }}
           >
             PRIMARY
@@ -99,7 +119,7 @@ const UsersBox = (props) => {
             className="px-3 py-2 bg-white fw-09500 border-0 text-muted btn-gen"
             onClick={() => {
               changeBTN();
-              props.changeBoxMessage(true);
+              navigate("/direct/inbox/general");
             }}
           >
             GENERAL
@@ -107,18 +127,44 @@ const UsersBox = (props) => {
         </div>
         <div className="h-100" style={{ paddingTop: "6.6rem" }}>
           <div className="h-100 overflow-auto">
-            {props.MessageGeneral ? (
+            {location === "/direct/inbox/general" ? (
               <>
                 <UserLoading />
                 <UserLoading />
                 <UserLoading />
               </>
             ) : (
-              <User />
+              <User
+                data={{
+                  profile: "/imgs/profile/bot.jpeg",
+                  name: "bot 🤖",
+                  link: "/direct/bot",
+                }}
+              />
             )}
           </div>
         </div>
       </div>
+      {/* {location === "/direct/bot" ? (
+        <>
+          {props.Details ? (
+            <Details
+              data={{
+                profile: "/imgs/profile/bot.jpeg",
+                name: "bot 🤖",
+                username: "Bot",
+              }}
+            />
+          ) : (
+            <Direct
+              data={{
+                profile: "/imgs/profile/bot.jpeg",
+                name: "bot 🤖",
+              }}
+            />
+          )}
+        </>
+      ) : null} */}
     </>
   );
   function changeBTN() {
@@ -131,6 +177,7 @@ const UsersBox = (props) => {
 
 const mapStateToProps = (state) => ({
   MessageGeneral: state.Modal.MessageGeneral,
+  Details: state.Modal.DetailsDirect,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeNewMessage: (data) => dispatch(changeNEWmessage(data)),

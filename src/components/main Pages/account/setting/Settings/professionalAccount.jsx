@@ -1,4 +1,6 @@
-const ProfessionalAccount = () => {
+import { connect } from "react-redux";
+
+const ProfessionalAccount = (props) => {
   document.title = "Professional Account • Instagram";
   return (
     <>
@@ -11,7 +13,7 @@ const ProfessionalAccount = () => {
             className="col-12 col-sm-9 d-flex flex-column ps-2 p-0"
             style={{ maxWidth: "360px" }}
           >
-            <span className="fs-09">Programer</span>
+            <span className="fs-09">{props.Account.rul}</span>
             <span className="fs-09 text-primary fw-500 cursor">Change</span>
             <div className="form-check">
               <input
@@ -44,4 +46,8 @@ const ProfessionalAccount = () => {
   );
 };
 
-export default ProfessionalAccount;
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
+
+export default connect(mapStateToProps)(ProfessionalAccount);

@@ -1,7 +1,21 @@
 import { Loggin, Account } from "../actions/typeActions";
 
 const initialState = {
-  Account: { username: "", password: "", email: "", name: "", have: false },
+  Account: {
+    username: "",
+    password: "",
+    email: "",
+    name: "",
+    have: false,
+    avatar: "/imgs/profile/myProfile.jpg",
+    bio: `👨🏻‍💻 Welcome to the world of Programmers! \n
+    📊 Sponsored Post/Story: DM \n
+    ⚠️ The coolest gadgets for programmer!`,
+    rul: "Programer",
+    phone: "",
+    gender: "Custom",
+    website: "",
+  },
   Loggin: false,
 };
 

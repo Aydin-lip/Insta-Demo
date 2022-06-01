@@ -61,6 +61,12 @@ const FormSignUp = (props) => {
           email: Email.current.value,
           name: FullName.current.value,
           have: true,
+          avatar: props.Account.avatar,
+          bio: props.Account.bio,
+          rul: props.Account.rul,
+          phone: props.Account.phone,
+          gender: props.Account.gender,
+          website: props.Account.website,
         });
       }, 2000);
     }
@@ -136,6 +142,28 @@ const FormSignUp = (props) => {
                       <Link to="/" className="mt-2 text-primary d-inline-block">
                         Click to go login page
                       </Link>
+                      <span
+                        className="text-danger fw-bolder cursor d-block mt-3"
+                        onClick={() => {
+                          props.changeAccount({
+                            username: "",
+                            password: "",
+                            email: "",
+                            name: "",
+                            have: false,
+                            avatar: props.Account.avatar,
+                            bio: props.Account.bio,
+                            rul: props.Account.rul,
+                            phone: props.Account.phone,
+                            gender: props.Account.gender,
+                            website: props.Account.website,
+                          });
+                          document.location.pathname =
+                            document.location.pathname;
+                        }}
+                      >
+                        Delete Account
+                      </span>
                     </>
                   ) : (
                     <>

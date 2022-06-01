@@ -3,21 +3,29 @@ import FooterProfile from "./footer";
 import ProfilePosts from "./posts/posts";
 import SavedProfile from "./saved/saved";
 import TaggedProfile from "./tagged/tagged";
-import { NavLink, Routes, Route } from "react-router-dom";
+import { NavLink, Routes, Route, Outlet } from "react-router-dom";
 import ProfileSmUp from "./smUp";
 import ProfileSmDown from "./smDown";
+import Navbar from "../../navbar/navbar";
+import { connect } from "react-redux";
+import Following from "./follow/following";
+import Settings from "../setting/settings";
 
-const Profile = () => {
+const Profile = (props) => {
   useEffect(() => {
     const btns = document.querySelectorAll(".btn-profile");
     btns.forEach((b) => {
       b.classList.remove("active-btn-profile");
     });
-    if (document.location.pathname === "/aydin.lip") {
+    if (document.location.pathname === `/${props.Account.username}`) {
       btns[0].classList.add("active-btn-profile");
-    } else if (document.location.pathname === "/aydin.lip/saved") {
+    } else if (
+      document.location.pathname === `${props.Account.username}/saved`
+    ) {
       btns[1].classList.add("active-btn-profile");
-    } else if (document.location.pathname === "/aydin.lip/tagged") {
+    } else if (
+      document.location.pathname === `${props.Account.username}/tagged`
+    ) {
       btns[2].classList.add("active-btn-profile");
     }
   });
@@ -35,7 +43,7 @@ const Profile = () => {
                 style={{ marginTop: "-1px", opacity: ".5" }}
               >
                 <NavLink
-                  to="/aydin.lip"
+                  to={`/${props.Account.username}`}
                   className="text-decoration-none text-black d-flex"
                 >
                   <div
@@ -118,7 +126,7 @@ const Profile = () => {
                 style={{ marginTop: "-1px", opacity: ".5" }}
               >
                 <NavLink
-                  to="/aydin.lip/saved"
+                  to={`/${props.Account.username}/saved`}
                   className="text-decoration-none text-black d-flex"
                 >
                   <div
@@ -154,7 +162,7 @@ const Profile = () => {
                 style={{ marginTop: "-1px", opacity: ".5" }}
               >
                 <NavLink
-                  to="/aydin.lip/tagged"
+                  to={`/${props.Account.username}/tagged`}
                   className="text-decoration-none text-black d-flex"
                 >
                   <div
@@ -205,38 +213,28 @@ const Profile = () => {
               </button>
             </div>
 
-            <Routes>
-              <Route
-                path="/aydin.lip"
-                element={<ProfilePosts data={{ Posts: [] }} />}
-              />
-              <Route
-                path="/aydin.lip/:string"
-                element={
-                  <ProfilePosts
-                    data={{
-                      Posts: [
-                        {
-                          Post: [
-                            "/imgs/profile/leitoProfile.jpg",
-                            "/imgs/post/post-2.jpg",
-                          ],
-                          Likes: 32,
-                          Comments: 7,
-                        },
-                        {
-                          Post: ["/imgs/profile/profileM.jpg"],
-                          Likes: 58,
-                          Comments: 3,
-                        },
-                      ],
-                    }}
-                  />
-                }
-              />
-              <Route path="/aydin.lip/saved" element={<SavedProfile />} />
-              <Route path="/aydin.lip/tagged" element={<TaggedProfile />} />
-            </Routes>
+            {/* <ProfilePosts
+              data={{
+                Posts: [
+                  {
+                    Post: [
+                      "/imgs/profile/leitoProfile.jpg",
+                      "/imgs/post/post-2.jpg",
+                    ],
+                    Likes: 32,
+                    Comments: 7,
+                  },
+                  {
+                    Post: ["/imgs/profile/profileM.jpg"],
+                    Likes: 58,
+                    Comments: 3,
+                  },
+                ],
+              }}
+            />
+            <ProfilePosts data={{ Posts: [] }} /> */}
+
+            <Outlet />
 
             <FooterProfile />
           </div>
@@ -255,4 +253,8 @@ const Profile = () => {
   }
 };
 
-export default Profile;
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
+
+export default connect(mapStateToProps)(Profile);

@@ -77,7 +77,8 @@ const NewAccount = (props) => {
                   <input
                     className="inputLogin input-text"
                     type="Text"
-                    placeholder="Phone number, username, or email"
+                    placeholder="username, or email"
+                    defaultValue={props.Account.username}
                   />
                   <div className="position-relative">
                     <input
@@ -85,10 +86,11 @@ const NewAccount = (props) => {
                       type="Password"
                       onChange={onCheangeHandle}
                       placeholder="Password"
+                      defaultValue={props.Account.password}
                     />
                     <span
                       onClick={onClickShow}
-                      className="span-showPass position-absolute d-none"
+                      className="span-showPass position-absolute"
                       style={{ top: ".5rem", right: ".7rem" }}
                     >
                       Show
@@ -98,11 +100,11 @@ const NewAccount = (props) => {
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="SaveLoginInfo"
+                      id="SaveLoginInfo2"
                     />
                     <label
                       className="form-check-label my-1 mx-2"
-                      htmlFor="SaveLoginInfo"
+                      htmlFor="SaveLoginInfo2"
                       style={{ fontSize: ".75rem" }}
                     >
                       Save login info
@@ -151,6 +153,7 @@ const NewAccount = (props) => {
 
 const mapStateToProps = (state) => ({
   ModalNewAccount: state.Modal.NewAccount,
+  Account: state.Information.Account,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeNewAccount: (data) => dispatch(changeNEWaccount(data)),

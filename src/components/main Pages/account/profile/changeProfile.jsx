@@ -1,8 +1,28 @@
+import { useRef } from "react";
 import { Modal } from "react-bootstrap";
 import { connect } from "react-redux";
-import { changePROFILE } from "../../../useStateManager/actions/actions";
+import {
+  ACCOUNT,
+  changePROFILE,
+} from "../../../useStateManager/actions/actions";
 
 const ChangeProfile = (props) => {
+  const Src = useRef();
+  const change = () => {
+    props.changeAccount({
+      username: props.Account.username,
+      password: props.Account.password,
+      email: props.Account.email,
+      name: props.Account.name,
+      have: true,
+      avatar: Src.current.value,
+      bio: props.Account.bio,
+      rul: props.Account.rul,
+      phone: props.Account.phone,
+      gender: props.Account.gender,
+      website: props.Account.website,
+    });
+  };
   return (
     <>
       <Modal
@@ -32,12 +52,33 @@ const ChangeProfile = (props) => {
                     className="border-top mb-0 ms-auto p-2 input-noPlace"
                     placeholder="Profile Photo"
                     style={{ width: "18rem" }}
+                    ref={Src}
                   />
                 </div>
-                <span className="btn btn-primary bg-gradient rounded-0 fs-09 fw-700 d-block text-center py-08 cursor">
+                <span
+                  className="btn btn-primary bg-gradient rounded-0 fs-09 fw-700 d-block text-center py-08 cursor"
+                  onClick={change}
+                >
                   Change
                 </span>
-                <span className="text-danger fs-09 fw-700 d-block text-center border-top py-08 cursor">
+                <span
+                  className="text-danger fs-09 fw-700 d-block text-center border-top py-08 cursor"
+                  onClick={() => {
+                    props.changeAccount({
+                      username: props.Account.username,
+                      password: props.Account.password,
+                      email: props.Account.email,
+                      name: props.Account.name,
+                      have: true,
+                      avatar: "",
+                      bio: props.Account.bio,
+                      rul: props.Account.rul,
+                      phone: props.Account.phone,
+                      gender: props.Account.gender,
+                      website: props.Account.website,
+                    });
+                  }}
+                >
                   Remove Current Photo
                 </span>
                 <span
@@ -59,9 +100,11 @@ const ChangeProfile = (props) => {
 
 const mapStateToProps = (state) => ({
   Profile: state.Modal.ProfileAvatar,
+  Account: state.Information.Account,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeProfile: (data) => dispatch(changePROFILE(data)),
+  changeAccount: (data) => dispatch(ACCOUNT(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangeProfile);

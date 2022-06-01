@@ -3,6 +3,7 @@ import { useState } from "react";
 import BoxsFollowers from "./BoxsFollowers";
 import { NavLink, useNavigate } from "react-router-dom";
 import { RingLoader } from "react-spinners";
+import { connect } from "react-redux";
 
 const Followers = (props) => {
   const [Show, setShow] = useState(false);
@@ -16,7 +17,7 @@ const Followers = (props) => {
         }}
       >
         <NavLink
-          to="/aydin.lip/followers"
+          to={`/${props.Account.username}/followers`}
           className="text-decoration-none text-black"
         >
           <span className="me-1 fw-500">{props.Followers}</span>
@@ -26,7 +27,7 @@ const Followers = (props) => {
 
       <div className="col-4 d-flex d-sm-none justify-content-center align-items-center">
         <NavLink
-          to="/aydin.lip/followers"
+          to={`/${props.Account.username}/followers`}
           className="text-decoration-none text-black"
         >
           <div
@@ -47,7 +48,7 @@ const Followers = (props) => {
         show={Show}
         onHide={() => {
           setShow(false);
-          navigate("/aydin.lip", { replace: true });
+          navigate(`/${props.Account.username}`, { replace: true });
         }}
       >
         <Modal.Body className="p-0">
@@ -70,7 +71,7 @@ const Followers = (props) => {
                   style={{ top: ".5rem", right: "1rem" }}
                   onClick={() => {
                     setShow(false);
-                    navigate("/aydin.lip", { replace: true });
+                    navigate(`/${props.Account.username}`, { replace: true });
                   }}
                 >
                   <svg
@@ -121,4 +122,8 @@ const Followers = (props) => {
   );
 };
 
-export default Followers;
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
+
+export default connect(mapStateToProps)(Followers);

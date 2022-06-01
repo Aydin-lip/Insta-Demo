@@ -17,7 +17,7 @@ const ProfileSmUp = (props) => {
         <div className="col-3">
           <div className="">
             <img
-              src="/imgs/profile/profilePHOTO.jpg"
+              src={props.Account.avatar}
               width="150"
               height="150"
               alt="profile"
@@ -30,11 +30,13 @@ const ProfileSmUp = (props) => {
         </div>
         <div className="col-8 ms-3 ps-5">
           <div className="d-flex">
-            <h3 className="fw-light mb-0 me-2">aydin.lip</h3>
+            <h3 className="fw-light mb-0 me-2">{props.Account.username}</h3>
             <div className="mx-3">
-              <button className="btn btn-outline-dark border fs-09 fw-500 py-1 px-2">
-                Edit Profile
-              </button>
+              <NavLink to="/account/edit">
+                <button className="btn btn-outline-dark border fs-09 fw-500 py-1 px-2">
+                  Edit Profile
+                </button>
+              </NavLink>
             </div>
             <SettingProfile />
           </div>
@@ -49,27 +51,11 @@ const ProfileSmUp = (props) => {
           <div className="mb-5">
             <div className="fw-500">
               <h6 className="mb-0" style={{ fontWeight: "600" }}>
-                ★ॐ๏ ᙖᶤᵍ ᙖᵃᶰᵍ ๏ॐ★
+                {props.Account.name}
               </h6>
             </div>
-            <span className="text-muted">Gamer</span>
-            <p className="">
-              XoXo .🖤. Prickly🌵
-              <br />
-              -𝓜𝓸𝓻𝓭𝓪𝓭🔥
-              <br />
-              -тeнrαɴ🏩
-              <br />
-              -ωσℓƒ🐺
-              <br />
-              -кαямα♻️
-              <br />
-              -ℓeiтø🚀, tคtคl๏๏🚬, 𝕻𝖔𝖔𝖇𝖔𝖓🐺
-              <br />
-              -@6ix9ine 🌈💦🤟
-              <br />
-              More Active on ««Twitter»» ««Aydin_lip»»
-            </p>
+            <span className="text-muted">{props.Account.rul}</span>
+            <p className="">{props.Account.bio}</p>
           </div>
         </div>
       </div>
@@ -78,8 +64,11 @@ const ProfileSmUp = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
 const mapDispatchToProps = (dispatch) => ({
   changeProfile: (data) => dispatch(changePROFILE(data)),
 });
 
-export default connect(null, mapDispatchToProps)(ProfileSmUp);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileSmUp);

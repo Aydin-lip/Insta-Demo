@@ -1,16 +1,22 @@
 import { Dropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-const ProfileAccount = () => {
+import { connect } from "react-redux";
+import {
+  changeNEWaccount,
+  LOGGIN,
+} from "../../useStateManager/actions/actions";
+
+const ProfileAccount = (props) => {
   return (
     <>
       <Dropdown>
         <Dropdown.Toggle as="span" id="dropdown-basic">
           <img
-            src="/imgs/profile/profilePHOTO.jpg"
+            src={props.Account.avatar}
             width="25px"
             height="25px"
-            alt="profile"
+            alt=""
             className="rounded-circle"
           />
         </Dropdown.Toggle>
@@ -22,7 +28,7 @@ const ProfileAccount = () => {
         >
           <div className="py-2 px-3 cursor hover-user-search">
             <NavLink
-              to="/aydin.lip"
+              to={`/${props.Account.username}`}
               className="text-decoration-none text-black"
             >
               <div className="d-flex align-items-center">
@@ -71,7 +77,7 @@ const ProfileAccount = () => {
           </div>
           <div className="py-2 px-3 cursor hover-user-search">
             <NavLink
-              to="/aydin.lip/saved"
+              to={`/${props.Account.username}/saved`}
               className="text-decoration-none text-black"
             >
               <div className="d-flex align-items-center">
@@ -136,7 +142,12 @@ const ProfileAccount = () => {
               </div>
             </NavLink>
           </div>
-          <div className="py-2 px-3 cursor hover-user-search">
+          <div
+            className="py-2 px-3 cursor hover-user-search"
+            onClick={() => {
+              props.changeNewAccount(true);
+            }}
+          >
             <div className="d-flex align-items-center">
               <span className="me-2 pe-1">
                 <svg
@@ -154,7 +165,12 @@ const ProfileAccount = () => {
             </div>
           </div>
           <Dropdown.Divider className="m-0 mt-1" />
-          <div className="py-2 px-3 cursor hover-user-search">
+          <div
+            className="py-2 px-3 cursor hover-user-search"
+            onClick={() => {
+              props.changeLogin(false);
+            }}
+          >
             <div className="d-flex align-items-center">
               <span className="fs-09">Log Out</span>
             </div>
@@ -165,4 +181,12 @@ const ProfileAccount = () => {
   );
 };
 
-export default ProfileAccount;
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
+const mapDispatchToProps = (dispatch) => ({
+  changeNewAccount: (data) => dispatch(changeNEWaccount(data)),
+  changeLogin: (data) => dispatch(LOGGIN(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileAccount);

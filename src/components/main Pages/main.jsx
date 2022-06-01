@@ -1,22 +1,26 @@
-import Profile from "./account/profile/profile";
-import Settings from "./account/setting/settings";
-import NewPost from "./addPost/newPost";
-import DirectInbox from "./directs/inbox";
-import Home from "./home/home";
-import Navbar from "./navbar/navbar";
+import { connect } from "react-redux";
+import { Route, Routes, Outlet } from "react-router-dom";
 import "./style.css";
 
-const Main = () => {
+import Navbar from "./navbar/navbar";
+import Home from "./home/home";
+import NewAccount from "./directs/addAccount/newAccount";
+
+const Main = (props) => {
   return (
     <>
       <Navbar />
-      {/* <Home /> */}
-      <DirectInbox />
-      {/* <Profile /> */}
-      {/* <Settings /> */}
-      <NewPost />
+      <NewAccount />
+      <Outlet />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   );
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
+
+export default connect(mapStateToProps)(Main);

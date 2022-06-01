@@ -1,17 +1,6 @@
 import { useEffect } from "react";
-import { NavLink, Routes, Route } from "react-router-dom";
+import { NavLink, Routes, Route, Outlet } from "react-router-dom";
 import FooterProfile from "../profile/footer";
-import AppsAndWebsites from "./Settings/appsAndWebsites";
-import ChangePassword from "./Settings/changePassword";
-import EditProfile from "./Settings/editProfile";
-import EmailNotifications from "./Settings/emailNotifications";
-import EmailsFromInstagram from "./Settings/emailsFromInstagram";
-import Help from "./Settings/help";
-import LoginActivity from "./Settings/loginActivity";
-import ManageContacts from "./Settings/manageContacts";
-import PrivacyAndSecurity from "./Settings/privacyAndSecurity";
-import ProfessionalAccount from "./Settings/professionalAccount";
-import PushNotifications from "./Settings/pushNotifications";
 import SwitchToAccount from "./Settings/switchToAccount";
 
 const Settings = () => {
@@ -70,7 +59,7 @@ const Settings = () => {
               </button>
             </NavLink>
             <NavLink
-              to="/emails/settings"
+              to="/account/emails/settings"
               className="text-dark text-decoration-none"
             >
               <button className="border-0 bg-white w-100 text-start px-4 settings">
@@ -78,7 +67,7 @@ const Settings = () => {
               </button>
             </NavLink>
             <NavLink
-              to="/push/web/settings"
+              to="/account/push/web/settings"
               className="text-dark text-decoration-none"
             >
               <button className="border-0 bg-white w-100 text-start px-4 settings">
@@ -102,7 +91,7 @@ const Settings = () => {
               </button>
             </NavLink>
             <NavLink
-              to="/session/login_activity"
+              to="/account/session/login_activity"
               className="text-dark text-decoration-none"
             >
               <button className="border-0 bg-white w-100 text-start px-4 settings">
@@ -110,7 +99,7 @@ const Settings = () => {
               </button>
             </NavLink>
             <NavLink
-              to="/emails/emails_send"
+              to="/account/emails/emails_send"
               className="text-dark text-decoration-none"
             >
               <button className="border-0 bg-white w-100 text-start px-4 settings">
@@ -118,7 +107,7 @@ const Settings = () => {
               </button>
             </NavLink>
             <NavLink
-              to="/settings/help"
+              to="/account/settings/help"
               className="text-dark text-decoration-none"
             >
               <button className="border-0 bg-white w-100 text-start px-4 settings">
@@ -203,43 +192,7 @@ const Settings = () => {
             </div>
           </div>
           <div className="col-12 col-sm-9 p-4">
-            <Routes>
-              <Route path="/account/edit" element={<EditProfile />} />
-              <Route
-                path="/account/professional_account-settings"
-                element={<ProfessionalAccount />}
-              />
-              <Route
-                path="/account/password/change"
-                element={<ChangePassword />}
-              />
-              <Route
-                path="/account/manage_access"
-                element={<AppsAndWebsites />}
-              />
-              <Route path="/emails/settings" element={<EmailNotifications />} />
-              <Route
-                path="/push/web/settings"
-                element={<PushNotifications />}
-              />
-              <Route
-                path="/account/contacts_history"
-                element={<ManageContacts />}
-              />
-              <Route
-                path="/account/privacy_and_security"
-                element={<PrivacyAndSecurity />}
-              />
-              <Route
-                path="/session/login_activity"
-                element={<LoginActivity />}
-              />
-              <Route
-                path="/emails/emails_send"
-                element={<EmailsFromInstagram />}
-              />
-              <Route path="/settings/help" element={<Help />} />
-            </Routes>
+            <Outlet />
           </div>
         </div>
       </div>

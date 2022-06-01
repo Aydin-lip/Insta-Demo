@@ -1,13 +1,22 @@
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { ClipLoader, DotLoader, FadeLoader, MoonLoader } from "react-spinners";
 import Message from "./message";
+import Details from "./details";
 
 import { connect } from "react-redux";
 import { changeDETAILSdirect } from "../../../useStateManager/actions/actions";
 
 const Direct = (props) => {
   document.title = "Instagram • Direct";
-  return (
+  return props.Details ? (
+    <Details
+      data={{
+        profile: props.data.profile,
+        name: props.data.name,
+        username: props.data.username,
+      }}
+    />
+  ) : (
     <>
       <div className="w-100 position-relative">
         <div
@@ -17,7 +26,7 @@ const Direct = (props) => {
           <div className="ms-2 pt-1 d-flex align-items-center cursor">
             <div className="position-relative">
               <img
-                src="/imgs/profile/leitoProfile.jpg"
+                src={props.data.profile}
                 width="24px"
                 height="24px"
                 alt="profile"
@@ -26,12 +35,8 @@ const Direct = (props) => {
               <div className="active-user-directTop"></div>
             </div>
             <div className="ms-2 ps-1">
-              <h6 className="mb-0" style={{ fontWeight: "500" }}>
-                mahdi.p
-              </h6>
-              <span className="text-muted" style={{ fontSize: ".8rem" }}>
-                Active now
-              </span>
+              <h6 className="mb-0 fw-500 fs-09">{props.data.name}</h6>
+              <span className="text-muted fs-08">Active now</span>
             </div>
           </div>
           <span
@@ -86,14 +91,14 @@ const Direct = (props) => {
           className="overflow-auto position-absolute start-0 end-0 px-3"
           style={{ top: "2.5rem", bottom: "5.3rem" }}
         >
+          {/* <br />
           <br />
           <br />
           <br />
           <br />
           <br />
           <br />
-          <br />
-          <br />
+          <br /> */}
           <br />
           <br />
           <br />
@@ -110,7 +115,7 @@ const Direct = (props) => {
             data={{
               Sender: "to",
               Text: "حاجی دوساعته منتظرتم بدو یه دست میتونم بزنم بعدش کلاس دارم بدو",
-              Profile: "/imgs/profile/leitoProfile.jpg",
+              Profile: props.data.profile,
             }}
           />
           <Message data={{ Sender: "me", Text: "همون اوکیه" }} />
@@ -203,8 +208,11 @@ const Direct = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  Details: state.Modal.DetailsDirect,
+});
 const mapDispatchToProps = (dispatch) => ({
   changeDetailsDirect: (data) => dispatch(changeDETAILSdirect(data)),
 });
 
-export default connect(null, mapDispatchToProps)(Direct);
+export default connect(mapStateToProps, mapDispatchToProps)(Direct);

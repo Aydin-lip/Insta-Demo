@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
-const SettingProfile = () => {
+import { LOGGIN } from "../../../useStateManager/actions/actions";
+import { connect } from "react-redux";
+
+const SettingProfile = (props) => {
   const [Show, setShow] = useState(false);
   return (
     <>
@@ -59,38 +63,57 @@ const SettingProfile = () => {
               }}
             >
               <div className="d-flex flex-column overflow-auto h-100">
-                <button className="border-0 item-morOption fs-09 bg-white pt-1">
-                  Change Password
-                </button>
-                <button className="border-0 item-morOption border-top fs-09 bg-white">
-                  Professional Account
-                </button>
-                <button className="border-0 item-morOption border-top fs-09 bg-white">
+                <NavLink to="/account/password/change">
+                  <button className="border-0 item-morOption w-100 fs-09 bg-white pt-1">
+                    Change Password
+                  </button>
+                </NavLink>
+                <NavLink to="/account/professional_account-settings">
+                  <button className="border-0 item-morOption w-100 border-top fs-09 bg-white">
+                    Professional Account
+                  </button>
+                </NavLink>
+                <button className="border-0 item-morOption w-100 border-top fs-09 bg-white">
                   QR Code
                 </button>
-                <button className="border-0 item-morOption border-top fs-09 bg-white">
-                  Apps and Websites
-                </button>
-                <button className="border-0 item-morOption border-top fs-09 bg-white">
-                  Notifications
-                </button>
-                <button className="border-0 item-morOption border-top fs-09 bg-white">
-                  Privacy and Security
-                </button>
-                <button className="border-0 item-morOption border-top fs-09 bg-white">
-                  Login Activity
-                </button>
-                <button className="border-0 item-morOption border-top fs-09 bg-white">
-                  Emails from Instagram
-                </button>
-                <button className="border-0 item-morOption border-top fs-09 bg-white">
+                <NavLink to="/account/manage_access">
+                  <button className="border-0 item-morOption w-100 border-top fs-09 bg-white">
+                    Apps and Websites
+                  </button>
+                </NavLink>
+                <NavLink to="/account/emails/settings">
+                  <button className="border-0 item-morOption w-100 border-top fs-09 bg-white">
+                    Notifications
+                  </button>
+                </NavLink>
+                <NavLink to="/account/privacy_and_security">
+                  <button className="border-0 item-morOption w-100 border-top fs-09 bg-white">
+                    Privacy and Security
+                  </button>
+                </NavLink>
+                <NavLink to="/account/session/login_activity">
+                  <button className="border-0 item-morOption w-100 border-top fs-09 bg-white">
+                    Login Activity
+                  </button>
+                </NavLink>
+                <NavLink to="/account/emails/emails_send">
+                  <button className="border-0 item-morOption w-100 border-top fs-09 bg-white">
+                    Emails from Instagram
+                  </button>
+                </NavLink>
+                <button className="border-0 item-morOption w-100 border-top fs-09 bg-white">
                   Report a Problem
                 </button>
-                <button className="border-0 item-morOption border-top fs-09 bg-white fw-500 text-danger">
+                <button
+                  className="border-0 item-morOption w-100 border-top fs-09 bg-white fw-500 text-danger"
+                  onClick={() => {
+                    props.changeLogin(false);
+                  }}
+                >
                   Log Out
                 </button>
                 <button
-                  className="border-0 item-morOption fs-09 border-top bg-white pb-1"
+                  className="border-0 item-morOption w-100 fs-09 border-top bg-white pb-1"
                   onClick={() => {
                     setShow(false);
                   }}
@@ -106,4 +129,8 @@ const SettingProfile = () => {
   );
 };
 
-export default SettingProfile;
+const mapDispatchToProps = (dispatch) => ({
+  changeLogin: (data) => dispatch(LOGGIN(data)),
+});
+
+export default connect(null, mapDispatchToProps)(SettingProfile);

@@ -3,6 +3,8 @@ import { useState } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import BoxsFollowing from "./BoxsFollowing";
 import Hashtags from "./hashtags";
+import Followers from "./followers";
+import { connect } from "react-redux";
 
 const Following = (props) => {
   const [Show, setShow] = useState(false);
@@ -16,7 +18,7 @@ const Following = (props) => {
         }}
       >
         <NavLink
-          to="/aydin.lip/following"
+          to={`/${props.Account.username}/following`}
           className="text-decoration-none text-black"
         >
           <span className="me-1 fw-500">{props.Following}</span>
@@ -47,7 +49,7 @@ const Following = (props) => {
         show={Show}
         onHide={() => {
           setShow(false);
-          navigate("/aydin.lip", { replace: true });
+          navigate(`/${props.Account.username}`, { replace: true });
         }}
       >
         <Modal.Body className="p-0">
@@ -71,7 +73,7 @@ const Following = (props) => {
                   style={{ top: ".5rem", right: "1rem" }}
                   onClick={() => {
                     setShow(false);
-                    navigate("/aydin.lip", { replace: true });
+                    navigate(`/${props.Account.username}`, { replace: true });
                   }}
                 >
                   <svg
@@ -106,7 +108,7 @@ const Following = (props) => {
               </div>
               <div className="border-bottom d-flex">
                 <NavLink
-                  to="/aydin.lip/following"
+                  to={`/${props.Account.username}/following`}
                   className="text-decoration-none text-black"
                   style={{ width: "50%" }}
                 >
@@ -120,7 +122,7 @@ const Following = (props) => {
                   </button>
                 </NavLink>
                 <NavLink
-                  to="/aydin.lip/hashtag_following"
+                  to={`/${props.Account.username}/hashtag_following`}
                   className="text-decoration-none text-black"
                   style={{ width: "50%" }}
                 >
@@ -135,16 +137,12 @@ const Following = (props) => {
                 </NavLink>
               </div>
               <div className="overflow-auto" style={{ height: "77%" }}>
-                <Routes>
-                  <Route
-                    path="/aydin.lip/following"
-                    element={<BoxsFollowing />}
-                  />
-                  <Route
-                    path="/aydin.lip/hashtag_following"
-                    element={<Hashtags />}
-                  />
-                </Routes>
+                {document.location.pathname ===
+                `/${props.Account.username}/following` ? (
+                  <BoxsFollowing />
+                ) : (
+                  <Hashtags />
+                )}
               </div>
             </div>
           </div>
@@ -161,4 +159,8 @@ const Following = (props) => {
   }
 };
 
-export default Following;
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
+
+export default connect(mapStateToProps)(Following);

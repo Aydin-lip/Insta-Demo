@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import UsersBox from "./boxUsers/users";
 import MessagesBox from "./messages/messages";
 import MessagesGeneral from "./messages/messagesGeneral";
@@ -7,6 +8,7 @@ import Direct from "./direct/direct";
 import Details from "./direct/details";
 
 import { connect } from "react-redux";
+import { Outlet } from "react-router-dom";
 
 const DirectInbox = (props) => {
   return (
@@ -20,8 +22,7 @@ const DirectInbox = (props) => {
             >
               <div className="d-flex border rounded bg-white h-100">
                 <UsersBox />
-                {/* {props.MessageGeneral ? <MessagesGeneral /> : <MessagesBox />} */}
-                {props.Details ? <Details /> : <Direct />}
+                <Outlet />
                 <NewMessage />
                 <NewAccount />
               </div>

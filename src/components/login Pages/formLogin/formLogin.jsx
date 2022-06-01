@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FloatingLabel, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import GetApp from "../getApp/getApp";
@@ -13,6 +13,11 @@ const FormLogin = (props) => {
 
   const UserName = useRef();
   const Ppassword = useRef();
+
+  useEffect(() => {
+    props.Account.password ? setDisabled(false) : setDisabled(true);
+    onCheangeHandle();
+  });
 
   const changeInputs = () => {
     if (
@@ -61,6 +66,7 @@ const FormLogin = (props) => {
                   type="Text"
                   onChange={changeInputs}
                   ref={UserName}
+                  defaultValue={props.Account.username}
                   placeholder="username, or email"
                 />
                 <input
@@ -71,6 +77,7 @@ const FormLogin = (props) => {
                     changeInputs();
                   }}
                   ref={Ppassword}
+                  defaultValue={props.Account.password}
                   placeholder="Password"
                 />
                 <span

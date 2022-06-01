@@ -2,83 +2,49 @@ import { NavLink } from "react-router-dom";
 import Followers from "./follow/followers";
 import Following from "./follow/following";
 
-const ProfileSmDown = () => {
+import { connect } from "react-redux";
+import { changePROFILE } from "../../../useStateManager/actions/actions";
+import SettingProfile from "./setting";
+
+const ProfileSmDown = (props) => {
   return (
     <>
       <div className="d-sm-none" style={{ marginTop: "4rem" }}>
         <div className="d-flex">
           <div className="p-2">
             <img
-              src="/imgs/profile/profilePHOTO.jpg"
+              src={props.Account.avatar}
               width="77"
               height="77"
               alt="profile"
               className="rounded-circle"
+              onClick={() => {
+                props.changeProfile(true);
+              }}
             />
           </div>
           <div className="ms-3 w-100" style={{ maxWidth: "16rem" }}>
             <div className="d-flex">
-              <h1 className="fw-light my-2">aydin.lip</h1>
+              <h1 className="fw-light my-2">{props.Account.username}</h1>
               <span className="cursor p-2 ps-3">
-                <svg
-                  color="#262626"
-                  fill="#262626"
-                  height="24"
-                  role="img"
-                  viewBox="0 0 24 24"
-                  width="24"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    fill="none"
-                    r="8.635"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  ></circle>
-                  <path
-                    d="M14.232 3.656a1.269 1.269 0 01-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 01-.796.66m-.001 16.688a1.269 1.269 0 01.796.66l.505.996h1.862l.505-.996a1.269 1.269 0 01.796-.66M3.656 9.768a1.269 1.269 0 01-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 01.66.796m16.688-.001a1.269 1.269 0 01.66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 01-.66-.796M7.678 4.522a1.269 1.269 0 01-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 01-.096 1.03m11.8 11.799a1.269 1.269 0 011.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 01.096-1.03m-14.956.001a1.269 1.269 0 01.096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 011.03.096m11.799-11.8a1.269 1.269 0 01-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 01-1.03-.096"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  ></path>
-                </svg>
+                <SettingProfile />
               </span>
             </div>
-            <div className="">
+            <NavLink to="/account/edit" className="text-decoration-none">
               <button className="btn btn-outline-dark w-100 border fs-09 fw-500 py-1 px-2">
                 Edit Profile
               </button>
-            </div>
+            </NavLink>
           </div>
         </div>
         <div className="fs-08 ps-2 pt-3">
           <div className="fw-500">
             <h6 className="mb-0 fs-09" style={{ fontWeight: "600" }}>
-              ★ॐ๏ ᙖᶤᵍ ᙖᵃᶰᵍ ๏ॐ★
+              {props.Account.name}
             </h6>
           </div>
-          <span className="text-muted">Gamer</span>
-          <p className="">
-            XoXo .🖤. Prickly🌵
-            <br />
-            -𝓜𝓸𝓻𝓭𝓪𝓭🔥
-            <br />
-            -тeнrαɴ🏩
-            <br />
-            -ωσℓƒ🐺
-            <br />
-            -кαямα♻️
-            <br />
-            -ℓeiтø🚀, tคtคl๏๏🚬, 𝕻𝖔𝖔𝖇𝖔𝖓🐺
-            <br />
-            -@6ix9ine 🌈💦🤟
-            <br />
-            More Active on ««Twitter»» ««Aydin_lip»»
-          </p>
+          <span className="text-muted">{props.Account.rul}</span>
+          <p className="">{props.Account.bio}</p>
         </div>
         <div className="row border-top fs-09 p-2">
           <div className="col-4 d-flex justify-content-center align-items-center">
@@ -95,7 +61,7 @@ const ProfileSmDown = () => {
         </div>
         <div className="row border-top border-bottom">
           <button className="col-4 btn-profile-sm active-btn-profile-sm position-relative d-flex justify-content-center align-items-center p-2">
-            <NavLink to="/aydin.lip">
+            <NavLink to={`/${props.Account.username}`}>
               <div
                 className="position-absolute top-0 end-0 bottom-0 start-0"
                 onClick={(event) => {
@@ -171,7 +137,7 @@ const ProfileSmDown = () => {
             </NavLink>
           </button>
           <button className="col-4 btn-profile-sm position-relative d-flex justify-content-center align-items-center p-2">
-            <NavLink to="/aydin.lip/saved">
+            <NavLink to={`/${props.Account.username}/saved`}>
               <div
                 className="position-absolute top-0 end-0 bottom-0 start-0"
                 onClick={(event) => {
@@ -200,7 +166,7 @@ const ProfileSmDown = () => {
             </NavLink>
           </button>
           <button className="col-4 btn-profile-sm position-relative d-flex justify-content-center align-items-center p-2">
-            <NavLink to="/aydin.lip/tagged">
+            <NavLink to={`/${props.Account.username}/tagged`}>
               <div
                 className="position-absolute top-0 end-0 bottom-0 start-0"
                 onClick={(event) => {
@@ -261,4 +227,11 @@ const ProfileSmDown = () => {
   }
 };
 
-export default ProfileSmDown;
+const mapStateToProps = (state) => ({
+  Account: state.Information.Account,
+});
+const mapDispatchToProps = (dispatch) => ({
+  changeProfile: (data) => dispatch(changePROFILE(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileSmDown);
