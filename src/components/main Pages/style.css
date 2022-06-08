@@ -148,6 +148,16 @@
 .swiper-button-prev {
   font-weight: bold;
 }
+.loading-story-div {
+  z-index: 3;
+  background: #6464641f;
+  border-radius: 7px;
+  display: none;
+}
+.storys-box:hover .loading-story-div {
+  cursor: default;
+  display: flex !important;
+}
 
 /*                       Main / Left / Post                             */
 .fw-09500 {
@@ -243,6 +253,10 @@
   .box-modal-comments {
     width: 90%;
   }
+}
+
+.input-send-comment:focus {
+  box-shadow: 0px 0px !important;
 }
 
 /*                        Directs/Users                    */

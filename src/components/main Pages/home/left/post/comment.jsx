@@ -2,19 +2,15 @@ import { Component } from "react";
 import MorOptions from "./moreOptions";
 
 import { connect } from "react-redux";
-import {
-  changePostInformation,
-  changeMODALmoreOption,
-} from "../../../../useStateManager/actions/actions";
+import { changeMODALmoreOption } from "../../../../useStateManager/actions/actions";
 
 const Comment = (props) => {
-  const LikeProps = props.Like.filter((item) => item.id === 3);
   return (
     <>
       <div className="d-flex" style={{ padding: ".8rem" }}>
         <a href="#" style={{ height: "max-content" }}>
           <img
-            src="/imgs/profile/profileM.jpg"
+            src={props.data.user.relationship.avatar}
             width="32px"
             alt="profilr"
             className="rounded-circle"
@@ -28,13 +24,15 @@ const Comment = (props) => {
                 className="text-decoration-none text-black ps-2 fw-09500"
                 style={{ height: "max-content" }}
               >
-                <span>onlinetutorials_youtube</span>
+                <span>{props.data.user.login.username}</span>
               </a>
-              <p className="mb-2 ps-2">Great 🙌</p>
+              <p className="mb-2 ps-2">{props.data.message}</p>
             </div>
             <div className="text-muted ms-2">
-              <span className="fs-8">1d</span>
-              <span className="fw-09500 fs-8 m-3">1 Like</span>
+              <span className="fs-8">{Math.floor(Math.random() * 60)}h</span>
+              <span className="fw-09500 fs-8 m-3">
+                {Math.floor(Math.random() * 10)} Like
+              </span>
               <span className="fw-09500 fs-8">Reply</span>
               <span
                 className="cursor ms-3"
@@ -62,8 +60,8 @@ const Comment = (props) => {
             onClick={FuncLike}
             style={{ height: "max-content" }}
           >
-            {LikeProps[0].LikeComment ? (
-              <span className="">
+            {props.data.like ? (
+              <span>
                 <svg
                   aria-label="Like"
                   color="#262626"
@@ -77,7 +75,7 @@ const Comment = (props) => {
                 </svg>
               </span>
             ) : (
-              <span className="">
+              <span>
                 <svg
                   aria-label="Unlike"
                   color="#ed4956"
@@ -96,20 +94,14 @@ const Comment = (props) => {
       </div>
     </>
   );
-  function FuncLike() {
-    if (LikeProps[0].LikeComment) {
-      props.changeLike({ id: 3, LikeComment: false });
-    } else {
-      props.changeLike({ id: 3, LikeComment: true });
-    }
-  }
+  function FuncLike() {}
 };
 
 const mapStateToProps = (state) => ({
-  Like: state.Post.Post,
+  Like: state.PostsInfor.Likes,
+  UsersAPI: state.Users.Users,
 });
 const mapDispatchToProps = (dispatch) => ({
-  changeLike: (data) => dispatch(changePostInformation(data)),
   changeMoreOption: (data) => dispatch(changeMODALmoreOption(data)),
 });
 

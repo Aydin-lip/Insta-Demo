@@ -1,10 +1,13 @@
 import * as INFOR from "./typeActions";
 
-export const changePostInformation = (data) => ({
-  type: INFOR.changePostInformation,
+export const POSTSLIKE = (data) => ({
+  type: INFOR.PostsLikeInfor,
   payload: data,
 });
-
+export const POSTSSAVED = (data) => ({
+  type: INFOR.PostsSavedInfor,
+  payload: data,
+});
 export const changeMODALshare = (data) => ({
   type: INFOR.changeModalShare,
   payload: data,
@@ -60,5 +63,26 @@ export const ACCOUNT = (data) => ({
 });
 export const LOGGIN = (data) => ({
   type: INFOR.Loggin,
+  payload: data,
+});
+export const USERSapi = (data) => ({
+  type: INFOR.UsersAPI,
+  payload: data,
+});
+export const POSTSapi = (data) => ({
+  type: INFOR.PostsAPI,
+  payload: data,
+});
+export const ERRORUSERS = (data) => ({
+  type: INFOR.ErrorUsers,
+  payload: data,
+});
+export const ERRORPOSTS = (data) => ({
+  type: INFOR.ErrorPosts,
+  payload: data,
+});
+
+export const SAVEcomments = (data) => ({
+  type: INFOR.Comments,
   payload: data,
 });

@@ -145,19 +145,20 @@ const FormSignUp = (props) => {
                       <span
                         className="text-danger fw-bolder cursor d-block mt-3"
                         onClick={() => {
-                          props.changeAccount({
-                            username: "",
-                            password: "",
-                            email: "",
-                            name: "",
-                            have: false,
-                            avatar: props.Account.avatar,
-                            bio: props.Account.bio,
-                            rul: props.Account.rul,
-                            phone: props.Account.phone,
-                            gender: props.Account.gender,
-                            website: props.Account.website,
-                          });
+                          // props.changeAccount({
+                          //   username: "",
+                          //   password: "",
+                          //   email: "",
+                          //   name: "",
+                          //   have: false,
+                          //   avatar: props.Account.avatar,
+                          //   bio: props.Account.bio,
+                          //   rul: props.Account.rul,
+                          //   phone: props.Account.phone,
+                          //   gender: props.Account.gender,
+                          //   website: props.Account.website,
+                          // });
+                          localStorage.removeItem("persist:root");
                           document.location.pathname =
                             document.location.pathname;
                         }}

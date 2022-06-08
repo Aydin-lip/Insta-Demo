@@ -1,14 +1,17 @@
 import LikeCommentShare from "./like,comment,share";
 import SendComment from "./sendComment";
 import SwiperPost from "./swper";
-import ShareModal from "./shareModal";
-import Comments from "./comments";
-import MoreOptions from "./moreOptions";
 
 import { connect } from "react-redux";
 import { changeMODALmoreOption } from "../../../../useStateManager/actions/actions";
+import Comments from "./comments";
 
 const BoxPost = (props) => {
+  let Users = props.UsersAPI.filter(
+    (u) => props.data.username === u.login.username
+  );
+  let Comment = props.CommentsAPI.filter((c) => c.id === props.data.id)[0];
+
   return (
     <>
       <div className="mt-3 border bg-white" style={{ borderRadius: "8px" }}>
@@ -18,7 +21,7 @@ const BoxPost = (props) => {
         >
           <a href="#">
             <img
-              src="/imgs/profile/user2.jpg"
+              src={Users[0].relationship.avatar}
               width="32px"
               alt="profilr"
               className="rounded-circle"
@@ -28,7 +31,7 @@ const BoxPost = (props) => {
             href="#"
             className="text-decoration-none text-black ps-2 pt-1 fw-09500"
           >
-            <span>onlinetutorials_youtube</span>
+            <span>{Users[0].login.username}</span>
           </a>
           <div
             className="options-more ms-auto cursor"
@@ -51,57 +54,50 @@ const BoxPost = (props) => {
           </div>
         </div>
         <div>
-          <SwiperPost />
+          <SwiperPost data={props.data.postsUrl} />
         </div>
         <div>
-          <LikeCommentShare />
+          <LikeCommentShare data={props.data} />
           <div className="p-2 m-1 py-0 my-0">
             <p className="mb-0" style={{ fontSize: ".9rem" }}>
               <a href="#" className="text-black pe-2 fw-09500 comment-tag">
-                onlinetutorials_youtube
+                {Users[0].login.username}
               </a>
-              CSS Responsive Product Card Hover Effects Watch This :
-              https://youtu.be/dcUK7KZ3Dmo All Source Code :
-              https://www.patreon.com/onlinetutorials
+              {props.data.infor.bio}
             </p>
           </div>
           <div className="p-2 m-1 my-0" style={{ fontSize: ".9rem" }}>
             <span
-              className="text-decoration-none cursor view-comments"
+              className="text-decoration-none cursor view-comments position-relative"
               style={{ color: "#8e8e8e" }}
             >
-              View All 5 comments
+              {Comment.comments.length > 1 ? (
+                <> View All {Comment.comments.length} comments</>
+              ) : (
+                <> View {Comment.comments.length} comment</>
+              )}
+              <Comments data={props.data} />
             </span>
           </div>
           <div
             className="p-2 m-1 py-0 my-0"
             style={{ color: "#8e8e8e", fontSize: ".65rem" }}
           >
-            <span className="">37 MINUTES AGO</span>
+            <span className="">
+              {Math.floor(Math.random() * 60)} MINUTES AGO
+            </span>
           </div>
-          <SendComment />
+          <SendComment data={props.data.id} />
         </div>
       </div>
-      {/* {this.state.show ? (
-        <MorOptions show="true" unFollow="false" main="true" />
-      ) : null}
-      {this.state.show
-        ? setTimeout(() => {
-            this.setState({ show: false });
-          }, 10000)
-        : null} */}
-      <br />
-      <br />
-      <br />
-      <ShareModal />
-      <Comments />
-      <MoreOptions />
     </>
   );
 };
 
 const mapStateToProps = (state) => ({
   MoreOption: state.Modal.MoreOption,
+  UsersAPI: state.Users.Users,
+  CommentsAPI: state.Comments.Comments,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeMoreOption: (data) => dispatch(changeMODALmoreOption(data)),

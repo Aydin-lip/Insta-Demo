@@ -1,22 +1,37 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 import Comments from "./comments";
-import ShareModal from "./shareModal";
 
 import { connect } from "react-redux";
 import {
-  changePostInformation,
   changeMODALshare,
   changeMODALcomments,
 } from "../../../../useStateManager/actions/actions";
+import {
+  POSTSLIKE,
+  POSTSSAVED,
+} from "../../../../useStateManager/actions/actions";
 
 const LikeCommentShare = (props) => {
-  let like = props.State.Post.filter((item) => item.id === 1);
-  let save = props.State.Post.filter((item) => item.id === 2);
+  const [LikeState, setLikeState] = useState(false);
+  const [SaveState, setSaveState] = useState(false);
+
+  useEffect(() => {
+    let like = props.Likes.filter((n) => n === props.data.id);
+    let save = props.Saved.filter((n) => n === props.data.id);
+    // console.log(props.data.id, props.data.infor.like);
+    if (like.length >= 1) {
+      setLikeState(true);
+    }
+    if (save.length >= 1) {
+      setSaveState(true);
+    }
+  }, []);
+
   return (
     <>
       <div className="p-2 m-1 d-flex border-top mt-0">
         <div className="cursor me-2" onClick={Like}>
-          {like[0].Like ? (
+          {LikeState ? (
             <span className="likeIcon likeAnimation">
               <svg
                 color="#ed4956"
@@ -44,12 +59,7 @@ const LikeCommentShare = (props) => {
             </svg>
           )}
         </div>
-        <div
-          className="cursor view-comments iconB-post mx-2"
-          onClick={() => {
-            props.ChangeModalComment(true);
-          }}
-        >
+        <div className="cursor view-comments iconB-post mx-2 position-relative">
           <span>
             <svg
               aria-label="Comment"
@@ -69,6 +79,7 @@ const LikeCommentShare = (props) => {
               ></path>
             </svg>
           </span>
+          <Comments data={props.data} />
         </div>
         <div
           className="cursor share-post iconB-post mx-2"
@@ -107,7 +118,7 @@ const LikeCommentShare = (props) => {
           </span>
         </div>
         <div className="cursor ms-auto" onClick={Save}>
-          {save[0].Save ? (
+          {SaveState ? (
             <svg
               aria-label="Remove"
               color="#262626"
@@ -143,34 +154,53 @@ const LikeCommentShare = (props) => {
         </div>
       </div>
       <div className="p-2 m-1 py-0">
-        <span className="fw-09500">
-          <span className="likes me-1">{like[0].Like ? 70 : 69}</span>
+        <span className="fw-500 fs-09" style={{ cursor: "default" }}>
+          <span className="likes me-1">
+            {LikeState ? props.data.infor.likes + 1 : props.data.infor.likes}
+          </span>
           likes
         </span>
       </div>
     </>
   );
   function Like() {
-    if (!like[0].Like) {
-      props.ChangeINF({ id: 1, Like: true });
+    let num = props.Likes.find((n) => n === props.data.id) ? true : false;
+    if (num) {
+      setLikeState(false);
+      let sum = props.Likes.filter((Li) => Li !== props.data.id);
+      props.ChangeLikes(sum);
     } else {
-      props.ChangeINF({ id: 1, Like: false });
+      setLikeState(true);
+      let sum = props.Likes;
+      sum.push(props.data.id);
+      props.ChangeLikes(sum);
     }
   }
+
   function Save() {
-    if (!save[0].Save) {
-      props.ChangeINF({ id: 2, Save: true });
+    let num = props.Saved.find((n) => n === props.data.id) ? true : false;
+    if (num) {
+      setSaveState(false);
+      let sum = props.Saved.filter((Li) => Li !== props.data.id);
+      props.ChangeSaved(sum);
     } else {
-      props.ChangeINF({ id: 2, Save: false });
+      setSaveState(true);
+      let sum = props.Saved;
+      sum.push(props.data.id);
+      props.ChangeSaved(sum);
     }
   }
 };
 
 const mapStateToProps = (state) => ({
-  State: state.Post,
+  Likes: state.PostsInfor.Likes,
+  Saved: state.PostsInfor.Saved,
+  PostsAPI: state.Posts.Posts,
+  UsersAPI: state.Users.Users,
 });
 const mapDispatchToProps = (dispatch) => ({
-  ChangeINF: (data) => dispatch(changePostInformation(data)),
+  ChangeLikes: (data) => dispatch(POSTSLIKE(data)),
+  ChangeSaved: (data) => dispatch(POSTSSAVED(data)),
   ChangeModalShare: (data) => dispatch(changeMODALshare(data)),
   ChangeModalComment: (data) => dispatch(changeMODALcomments(data)),
 });

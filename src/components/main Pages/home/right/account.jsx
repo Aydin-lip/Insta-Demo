@@ -6,6 +6,19 @@ import { changeNEWaccount } from "../../../useStateManager/actions/actions";
 import { connect } from "react-redux";
 
 const Account = (props) => {
+  let Users = [];
+  props.UsersAPI.map((item) => {
+    Array(props.UsersAPI.length)
+      .fill({})
+      .map((num) => {
+        let sum = Math.floor(Math.random() * props.UsersAPI.length);
+        if (item.id === sum) {
+          Users = [...Users, item];
+        }
+      });
+  });
+  Users = Users.filter((item) => item.follow.following === false);
+  Users = Array.from(new Set(Users));
   return (
     <>
       <div
@@ -59,11 +72,19 @@ const Account = (props) => {
             See All
           </a>
         </div>
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
+        {Users.map((u, index) => {
+          if (index <= 4) {
+            return (
+              <User
+                key={index}
+                data={{
+                  Username: u.login.username,
+                  Profile: u.relationship.avatar,
+                }}
+              />
+            );
+          }
+        })}
         <Footer />
       </div>
     </>
@@ -72,6 +93,7 @@ const Account = (props) => {
 
 const mapStateToProps = (state) => ({
   Account: state.Information.Account,
+  UsersAPI: state.Users.Users,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeNewAccount: (data) => dispatch(changeNEWaccount(data)),

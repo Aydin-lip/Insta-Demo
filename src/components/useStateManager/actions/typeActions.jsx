@@ -1,5 +1,5 @@
-export const changePostInformation = "CHANGE-INFORMATION";
-
+export const PostsLikeInfor = "CHANGE-POSTS-LIKES";
+export const PostsSavedInfor = "CHANGE-POSTS-SAVED";
 export const changeModalShare = "CHANGE-MODAL-SHARE";
 export const changeModalComment = "CHANGE-MODAL-COMMENT";
 export const changeModalMoreOption = "CHANGE-MODAL-MOREOPTION";
@@ -12,6 +12,10 @@ export const changeDetailsDirect = "CHANGE-DETAILS-DIRECT";
 export const changeActivity = "CHANGE-ACTIVITY";
 export const changeAddSavedBox = "CHANGE-ADD-SAVED-BOX";
 export const changeProfile = "CHANGE-PROFILE";
-
 export const Account = "ACCOUNT";
 export const Loggin = "LOGGIN";
+export const UsersAPI = "USERSAPI";
+export const PostsAPI = "POSTSAPI";
+export const ErrorUsers = "ERROR-NET-USERS";
+export const ErrorPosts = "ERROR-NET-POSTS";
+export const Comments = "SEND-COMMENTS";

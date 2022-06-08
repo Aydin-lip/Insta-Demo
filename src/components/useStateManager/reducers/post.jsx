@@ -1,19 +1,25 @@
-import { changePostInformation } from "../actions/typeActions";
+import {
+  PostsLikeInfor,
+  PostsSavedInfor,
+  Comments,
+} from "../actions/typeActions";
 
 const initialState = {
-  Post: [
-    { id: 1, Like: false },
-    { id: 2, Save: false },
-    { id: 3, LikeComment: false },
-  ],
+  Likes: [69, 70, 3, 5, 7, 9, 1, 2],
+  Saved: [3, 9, 2],
+  Comments: [],
 };
 
 const PostInformation = (state = initialState, { type, payload }) => {
   switch (type) {
-    case changePostInformation:
-      let filterLike = state.Post.filter((item) => item.id !== payload.id);
-      let num = filterLike.concat([payload]);
-      return { ...state, Post: num };
+    case PostsLikeInfor:
+      return { ...state, Likes: payload };
+
+    case PostsSavedInfor:
+      return { ...state, Saved: payload };
+
+    case Comments:
+      return { ...state, Comments: payload };
 
     default:
       return state;

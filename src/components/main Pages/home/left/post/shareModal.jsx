@@ -1,16 +1,36 @@
-import { Component } from "react";
+import { useState } from "react";
 import { CloseButton, Modal } from "react-bootstrap";
 import UserShare from "./userShare";
 
 import { connect } from "react-redux";
 import { changeMODALshare } from "../../../../useStateManager/actions/actions";
+import { RingLoader } from "react-spinners";
 
 const ShareModal = (props) => {
+  const [Users, setUsers] = useState(props.UserAPI);
+
   if (props.Modal) {
     document.title = "Share • Direct";
   } else {
     document.title = "Instagram";
   }
+
+  let usernames = props.UserAPI.map((u) => u.login.username);
+  const changeInputSearch = (event) => {
+    let New = usernames.filter((user) => {
+      return user.toLowerCase().includes(event.target.value.toLowerCase());
+    });
+    let NewUsers = [];
+    New.map((n) => {
+      props.UserAPI.filter((u) => {
+        if (n === u.login.username) {
+          NewUsers = [...NewUsers, u];
+        }
+      });
+    });
+    setUsers(NewUsers);
+  };
+
   return (
     <>
       <Modal
@@ -43,6 +63,7 @@ const ShareModal = (props) => {
                 <input
                   type="text"
                   className="border-0 bg-white w-100 mx-4 mb-0 input-noPlace"
+                  onChange={changeInputSearch}
                   placeholder="Search..."
                 />
               </div>
@@ -50,14 +71,17 @@ const ShareModal = (props) => {
                 <div className="p-2 m-1">
                   <span className="fw-09500">Suggested</span>
                 </div>
-                <UserShare />
-                <UserShare />
-                <UserShare />
-                <UserShare />
-                <UserShare />
+                {Users.map((user, index) => (
+                  <UserShare key={index} data={user} />
+                ))}
+                <div className="w-100 d-flex justify-content-center align-items-center my-3">
+                  <RingLoader size="20px" />
+                </div>
               </div>
               <div className="p-2 m-1 border-top">
-                <button className="btn btn-primary w-100">Send</button>
+                <button className="btn btn-primary w-100" disabled>
+                  Send
+                </button>
               </div>
             </div>
           </div>
@@ -69,6 +93,7 @@ const ShareModal = (props) => {
 
 const mapStateToProps = (state) => ({
   Modal: state.Modal.Share,
+  UserAPI: state.Users.Users,
 });
 const mapDispatchToProps = (dispatch) => ({
   ChangeModal: (data) => dispatch(changeMODALshare(data)),
