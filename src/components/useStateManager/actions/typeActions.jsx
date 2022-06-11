@@ -19,3 +19,4 @@ export const PostsAPI = "POSTSAPI";
 export const ErrorUsers = "ERROR-NET-USERS";
 export const ErrorPosts = "ERROR-NET-POSTS";
 export const Comments = "SEND-COMMENTS";
+export const MessageDirect = "SEND-MESSAGE-DIRECT";

@@ -10,7 +10,6 @@ const Posts = (props) => {
 
   useEffect(() => {
     let AllPosts = [];
-    console.log("ok");
     props.PostsAPI.map((item) => {
       Array(props.PostsAPI.length)
         .fill({})
@@ -24,7 +23,6 @@ const Posts = (props) => {
     });
     AllPosts = Array.from(new Set(AllPosts));
     setPosts(AllPosts);
-    console.log(AllPosts);
   }, []);
 
   return (

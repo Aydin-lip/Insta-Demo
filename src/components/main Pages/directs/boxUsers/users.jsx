@@ -42,7 +42,7 @@ const UsersBox = (props) => {
                 props.changeNewAccount(true);
               }}
             >
-              <span className="">aydin.lip</span>
+              <span>{props.Account.username}</span>
               <span className="p-1">
                 <svg
                   style={{ transform: "rotate(180deg)" }}
@@ -145,26 +145,6 @@ const UsersBox = (props) => {
           </div>
         </div>
       </div>
-      {/* {location === "/direct/bot" ? (
-        <>
-          {props.Details ? (
-            <Details
-              data={{
-                profile: "/imgs/profile/bot.jpeg",
-                name: "bot 🤖",
-                username: "Bot",
-              }}
-            />
-          ) : (
-            <Direct
-              data={{
-                profile: "/imgs/profile/bot.jpeg",
-                name: "bot 🤖",
-              }}
-            />
-          )}
-        </>
-      ) : null} */}
     </>
   );
   function changeBTN() {
@@ -178,6 +158,7 @@ const UsersBox = (props) => {
 const mapStateToProps = (state) => ({
   MessageGeneral: state.Modal.MessageGeneral,
   Details: state.Modal.DetailsDirect,
+  Account: state.Information.Account,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeNewMessage: (data) => dispatch(changeNEWmessage(data)),

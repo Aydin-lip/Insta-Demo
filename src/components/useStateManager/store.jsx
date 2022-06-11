@@ -7,7 +7,7 @@ import thunk from "redux-thunk";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["PostsInfor", "Information"],
+  whitelist: ["PostsInfor", "Information", "Message"],
 };
 
 const persistedReducer = persistReducer(persistConfig, PostInformation);

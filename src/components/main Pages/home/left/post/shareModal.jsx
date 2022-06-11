@@ -7,7 +7,7 @@ import { changeMODALshare } from "../../../../useStateManager/actions/actions";
 import { RingLoader } from "react-spinners";
 
 const ShareModal = (props) => {
-  const [Users, setUsers] = useState(props.UserAPI);
+  const [Users, setUsers] = useState(props.UsersAPI);
 
   if (props.Modal) {
     document.title = "Share • Direct";
@@ -15,14 +15,14 @@ const ShareModal = (props) => {
     document.title = "Instagram";
   }
 
-  let usernames = props.UserAPI.map((u) => u.login.username);
+  let usernames = props.UsersAPI.map((u) => u.login.username);
   const changeInputSearch = (event) => {
     let New = usernames.filter((user) => {
       return user.toLowerCase().includes(event.target.value.toLowerCase());
     });
     let NewUsers = [];
     New.map((n) => {
-      props.UserAPI.filter((u) => {
+      props.UsersAPI.filter((u) => {
         if (n === u.login.username) {
           NewUsers = [...NewUsers, u];
         }
@@ -93,7 +93,7 @@ const ShareModal = (props) => {
 
 const mapStateToProps = (state) => ({
   Modal: state.Modal.Share,
-  UserAPI: state.Users.Users,
+  UsersAPI: state.Users.Users,
 });
 const mapDispatchToProps = (dispatch) => ({
   ChangeModal: (data) => dispatch(changeMODALshare(data)),

@@ -86,3 +86,8 @@ export const SAVEcomments = (data) => ({
   type: INFOR.Comments,
   payload: data,
 });
+
+export const MESSAGE = (data) => ({
+  type: INFOR.MessageDirect,
+  payload: data,
+});

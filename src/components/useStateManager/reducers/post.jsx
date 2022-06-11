@@ -5,8 +5,8 @@ import {
 } from "../actions/typeActions";
 
 const initialState = {
-  Likes: [69, 70, 3, 5, 7, 9, 1, 2],
-  Saved: [3, 9, 2],
+  Likes: [69, 70],
+  Saved: [69, 70],
   Comments: [],
 };
 

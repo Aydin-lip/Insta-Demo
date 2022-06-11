@@ -83,7 +83,7 @@ const NewAccount = (props) => {
                   <div className="position-relative">
                     <input
                       className="inputLogin mb-3 input-password"
-                      type="Password"
+                      type="password"
                       onChange={onCheangeHandle}
                       placeholder="Password"
                       defaultValue={props.Account.password}
@@ -97,14 +97,9 @@ const NewAccount = (props) => {
                     </span>
                   </div>
                   <div className="form-check d-flex">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id="SaveLoginInfo2"
-                    />
+                    <input className="form-check-input" type="checkbox" />
                     <label
                       className="form-check-label my-1 mx-2"
-                      htmlFor="SaveLoginInfo2"
                       style={{ fontSize: ".75rem" }}
                     >
                       Save login info

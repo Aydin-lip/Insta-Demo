@@ -1,6 +1,16 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 const User = (props) => {
+  useEffect(() => {
+    const user = document.querySelector(".userDirect");
+    if (document.location.pathname === props.data.link) {
+      user.style.backgroundColor = "rgba(231, 231, 231, 0.7)";
+    } else {
+      user.style.backgroundColor = "";
+    }
+  });
+
   return (
     <>
       <NavLink to={props.data.link} className="text-black text-decoration-none">

@@ -6,8 +6,8 @@ const UserLoading = () => {
     <div className="d-flex ps-3 py-2">
       <Skeleton circle={true} width={56} height={56} />
       <div className="m-2">
-        <Skeleton height={20} width={110} />
-        <Skeleton height={20} width={90} />
+        <Skeleton height={15} width={110} />
+        <Skeleton height={15} width={90} />
       </div>
     </div>
   );

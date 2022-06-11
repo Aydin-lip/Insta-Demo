@@ -1,13 +1,51 @@
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import UserNewMessage from "./userNewMessage";
+import { RingLoader } from "react-spinners";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { connect } from "react-redux";
-import { changeNEWmessage } from "../../../useStateManager/actions/actions";
+import {
+  changeNEWmessage,
+  ERRORPOSTS,
+} from "../../../useStateManager/actions/actions";
 
 const NewMessage = (props) => {
   document.title = props.ModalNewMessage
     ? "New Message • Direct"
     : "Inbox • Direct";
+
+  const [Users, setUsers] = useState(props.UsersAPI);
+  const [Loading, setLoading] = useState(true);
+
+  let usernames;
+  try {
+    usernames = props.UsersAPI.map((u) => u.login.username);
+  } catch (error) {
+    props.Error(true);
+  }
+  const changeNewMessageInput = (event) => {
+    let New = usernames.filter((user) => {
+      return user.toLowerCase().includes(event.target.value.toLowerCase());
+    });
+    let NewUsers = [];
+    New.map((n) => {
+      props.UsersAPI.filter((u) => {
+        if (n === u.login.username) {
+          NewUsers = [...NewUsers, u];
+        }
+      });
+    });
+    setUsers(NewUsers);
+  };
+
+  if (props.ModalNewMessage) {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }
+
   return (
     <>
       <Modal
@@ -83,17 +121,87 @@ const NewMessage = (props) => {
                   type="text"
                   className="border-0 bg-white w-100 mx-4 mb-0 input-noPlace"
                   placeholder="Search..."
+                  onChange={changeNewMessageInput}
                 />
               </div>
               <div className="overflow-auto" style={{ maxHeight: "296px" }}>
                 <div className="p-2 m-1">
                   <span className="fw-09500">Suggested</span>
                 </div>
-                <UserNewMessage />
-                <UserNewMessage />
-                <UserNewMessage />
-                <UserNewMessage />
-                <UserNewMessage />
+                {Loading ? (
+                  <>
+                    <div className="d-flex my-1">
+                      <div className="mx-2">
+                        <Skeleton width="55px" height="55px" circle="true" />
+                      </div>
+                      <div className="mt-2">
+                        <Skeleton width="130px" height="15px" />
+                        <Skeleton width="90px" height="15px" />
+                      </div>
+                    </div>
+                    <div className="d-flex my-1">
+                      <div className="mx-2">
+                        <Skeleton width="55px" height="55px" circle="true" />
+                      </div>
+                      <div className="mt-2">
+                        <Skeleton width="130px" height="15px" />
+                        <Skeleton width="90px" height="15px" />
+                      </div>
+                    </div>
+                    <div className="d-flex my-1">
+                      <div className="mx-2">
+                        <Skeleton width="55px" height="55px" circle="true" />
+                      </div>
+                      <div className="mt-2">
+                        <Skeleton width="130px" height="15px" />
+                        <Skeleton width="90px" height="15px" />
+                      </div>
+                    </div>
+                    <div className="d-flex my-1">
+                      <div className="mx-2">
+                        <Skeleton width="55px" height="55px" circle="true" />
+                      </div>
+                      <div className="mt-2">
+                        <Skeleton width="130px" height="15px" />
+                        <Skeleton width="90px" height="15px" />
+                      </div>
+                    </div>
+                    <div className="d-flex my-1">
+                      <div className="mx-2">
+                        <Skeleton width="55px" height="55px" circle="true" />
+                      </div>
+                      <div className="mt-2">
+                        <Skeleton width="130px" height="15px" />
+                        <Skeleton width="90px" height="15px" />
+                      </div>
+                    </div>
+                    <div className="d-flex my-1">
+                      <div className="mx-2">
+                        <Skeleton width="55px" height="55px" circle="true" />
+                      </div>
+                      <div className="mt-2">
+                        <Skeleton width="130px" height="15px" />
+                        <Skeleton width="90px" height="15px" />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {Users.map((u, index) => (
+                      <UserNewMessage
+                        key={index}
+                        data={{
+                          profile: u.relationship.avatar,
+                          username: u.login.username,
+                          name: u.name.first,
+                        }}
+                      />
+                    ))}
+                    <div className="w-100 d-flex justify-content-center align-items-center my-3">
+                      <RingLoader size="20px" />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -105,9 +213,11 @@ const NewMessage = (props) => {
 
 const mapStateToProps = (state) => ({
   ModalNewMessage: state.Modal.NewMessage,
+  UsersAPI: state.Users.Users,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeNewMessage: (data) => dispatch(changeNEWmessage(data)),
+  Error: (data) => dispatch(ERRORPOSTS(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewMessage);
