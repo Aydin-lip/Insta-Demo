@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { CloseButton, Modal } from "react-bootstrap";
+import { useState, useEffect, useRef } from "react";
+import { CloseButton, Modal, OverlayTrigger, Popover } from "react-bootstrap";
 import Comment from "./comment";
 import LikeCommentShare from "./like,comment,share";
 import MorOptions from "./moreOptions";
@@ -12,26 +12,64 @@ import { connect } from "react-redux";
 import {
   changeMODALcomments,
   changeMODALmoreOption,
+  SAVEcomments,
 } from "../../../../useStateManager/actions/actions";
+import { ClipLoader } from "react-spinners";
 
 const Comments = (props) => {
   const [Show, setShow] = useState(false);
   const [Loading, setLoading] = useState(true);
   const [MeComment, setMeComment] = useState([]);
 
-  useEffect(() => {
-    if (props.MeComments.length >= 1) {
-      props.MeComments.filter((c) => {
-        if (props.data.id === c.id) {
-          setMeComment([c]);
-          // if (MeComment.length >= 1) {
-          //   MeComment.map((c) => {
-          //     console.log(c);
-          //   });
-          // }
-        }
-      });
+  /////////////////send Comment///////////////////
+  const [Disabled, setDisabled] = useState(true);
+  const Input = useRef();
+
+  const changeInputComment = (event) => {
+    if (event.target.value.length >= 1) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
     }
+    if (!Disabled) {
+      if (event.nativeEvent.key === "Enter") {
+        SaveCommentFunc();
+      }
+    }
+  };
+
+  const SaveCommentFunc = () => {
+    props.SaveComment([]);
+    let newCom = {
+      id: props.data.id,
+      comment: Input.current.value,
+      like: false,
+    };
+    props.SaveComment([...props.MeComments, newCom]);
+    setDisabled(true);
+    setMeComment([...MeComment, newCom]);
+    Input.current.value = "";
+  };
+  ////////////////////////////////////
+
+  const setMeComm = () => {
+    props.CommentsAPI.filter((cs) => {
+      if (cs.id === props.data.id && props.MeComments.length >= 1) {
+        props.MeComments.filter((cm) => {
+          if (cm.id === cs.id) {
+            cs.comments.filter((c) => {
+              if (c.username === props.Account.username) {
+                setMeComment([c]);
+              }
+            });
+          }
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    setMeComm();
   }, []);
 
   let User = props.UsersAPI.filter(
@@ -39,10 +77,17 @@ const Comments = (props) => {
   );
   let comments = props.CommentsAPI.filter((c) => c.id === props.data.id)[0];
   let commentsUser = [];
-  if (comments.comments.length > 1) {
+  comments = {
+    ...comments,
+    comments: comments.comments.filter(
+      (c) => c.username !== props.Account.username
+    ),
+  };
+  if (comments.comments.length >= 1) {
     comments.comments.map((c) => {
       props.UsersAPI.filter((u) => {
         if (c.username === u.login.username) {
+          console.log();
           commentsUser = [...commentsUser, u];
         }
       });
@@ -59,6 +104,7 @@ const Comments = (props) => {
     <>
       <div
         className="position-absolute top-0 end-0 bottom-0 start-0"
+        style={{ zIndex: "3" }}
         onClick={() => {
           setShow(true);
         }}
@@ -164,9 +210,7 @@ const Comments = (props) => {
                           className="py-2"
                           style={{ color: "#8e8e8e", fontSize: ".65rem" }}
                         >
-                          <span>
-                            {Math.floor(Math.random() * 60)} MINUTES AGO
-                          </span>
+                          <span>1H 9Min AGO</span>
                         </div>
                       </div>
                     </div>
@@ -194,8 +238,10 @@ const Comments = (props) => {
                                   },
                                   login: { username: props.Account.username },
                                 },
-                                message: c.message,
+                                message: c.comment,
                                 like: false,
+                                time: "now",
+                                likes: 0,
                               }}
                             />
                           ))
@@ -215,7 +261,55 @@ const Comments = (props) => {
                   ) : (
                     <>
                       <LikeCommentShare data={props.data} />
-                      <SendComment data={props.data.id} />
+                      <>
+                        <div
+                          className="border-top m-1 d-flex mt-3"
+                          style={{ maxHeight: "90px" }}
+                        >
+                          <OverlayTrigger
+                            trigger="click"
+                            placement="top"
+                            overlay={
+                              <Popover>
+                                <Popover.Body>
+                                  <ClipLoader size={30} />
+                                </Popover.Body>
+                              </Popover>
+                            }
+                          >
+                            <button className="border-0 bg-white">
+                              <div className="p-2 cursor">
+                                <svg
+                                  aria-label="Emoji"
+                                  color="#262626"
+                                  fill="#262626"
+                                  height="24"
+                                  role="img"
+                                  viewBox="0 0 24 24"
+                                  width="24"
+                                >
+                                  <path d="M15.83 10.997a1.167 1.167 0 101.167 1.167 1.167 1.167 0 00-1.167-1.167zm-6.5 1.167a1.167 1.167 0 10-1.166 1.167 1.167 1.167 0 001.166-1.167zm5.163 3.24a3.406 3.406 0 01-4.982.007 1 1 0 10-1.557 1.256 5.397 5.397 0 008.09 0 1 1 0 00-1.55-1.263zM12 .503a11.5 11.5 0 1011.5 11.5A11.513 11.513 0 0012 .503zm0 21a9.5 9.5 0 119.5-9.5 9.51 9.51 0 01-9.5 9.5z"></path>
+                                </svg>
+                              </div>
+                            </button>
+                          </OverlayTrigger>
+
+                          <input
+                            type="text"
+                            className="mb-0 border-0 bg-white w-100 input-noPlace"
+                            placeholder="Add a comment..."
+                            ref={Input}
+                            onKeyUp={changeInputComment}
+                          />
+                          <button
+                            className="btn text-primary ms-auto border-0 bg-white mt-1 fw-09500 input-send-comment"
+                            disabled={Disabled}
+                            onClick={SaveCommentFunc}
+                          >
+                            Post
+                          </button>
+                        </div>
+                      </>
                     </>
                   )}
                 </div>
@@ -239,6 +333,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeModal: (data) => dispatch(changeMODALcomments(data)),
   changeMoreOption: (data) => dispatch(changeMODALmoreOption(data)),
+  SaveComment: (data) => dispatch(SAVEcomments(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);

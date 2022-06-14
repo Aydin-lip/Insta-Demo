@@ -8,6 +8,15 @@ import { changeACTIVITY } from "../../useStateManager/actions/actions";
 
 const Activity = (props) => {
   const [loading, setLoading] = useState(true);
+
+  let users = props.UsersAPI.filter((u) => u.follow.followers === true);
+
+  let Userss = [];
+  users.map((u) => {
+    Userss = [...Userss, users[Math.floor(Math.random() * users.length)]];
+  });
+  Userss = Array.from(new Set(Userss));
+
   return props.Activity ? (
     <>
       <div
@@ -29,65 +38,13 @@ const Activity = (props) => {
             <div className="w-100 h-100">
               <div className="p-2 border-bottom">
                 <span className="fs-09 fw-500 ps-1">Yesterday</span>
-                <LikePost
-                  data={{
-                    Profile: "/imgs/profile/profileM.jpg",
-                    Name: "mahdi-ven12",
-                    Time: "23h",
-                    Post: "/imgs/post/post-1.jpg",
-                  }}
-                />
+                <LikePost data={Userss[5]} />
               </div>
               <div className="p-2 border-bottom">
                 <span className="fs-09 fw-500 ps-1">This Week</span>
-                <Follow
-                  data={{
-                    Profile: "/imgs/profile/leitoProfile.jpg",
-                    Name: "Behzad Leito",
-                    Time: "3h",
-                    Follow: "follow",
-                  }}
-                />
-                <Follow
-                  data={{
-                    Profile: "/imgs/profile/leitoProfile.jpg",
-                    Name: "Behzad Leito",
-                    Time: "23h",
-                    Follow: "following",
-                  }}
-                />
-                <Follow
-                  data={{
-                    Profile: "/imgs/profile/leitoProfile.jpg",
-                    Name: "Behzad Leito",
-                    Time: "23h",
-                    Follow: "following",
-                  }}
-                />
-                <Follow
-                  data={{
-                    Profile: "/imgs/profile/leitoProfile.jpg",
-                    Name: "Behzad Leito",
-                    Time: "23h",
-                    Follow: "following",
-                  }}
-                />
-                <Follow
-                  data={{
-                    Profile: "/imgs/profile/leitoProfile.jpg",
-                    Name: "Behzad Leito",
-                    Time: "23h",
-                    Follow: "following",
-                  }}
-                />
-                <Follow
-                  data={{
-                    Profile: "/imgs/profile/leitoProfile.jpg",
-                    Name: "Behzad Leito",
-                    Time: "23h",
-                    Follow: "following",
-                  }}
-                />
+                {Userss.map((u, index) => (
+                  <Follow key={index} data={u} />
+                ))}
               </div>
             </div>
           </>
@@ -104,6 +61,7 @@ const Activity = (props) => {
 
 const mapStateToProps = (state) => ({
   Activity: state.Modal.Activity,
+  UsersAPI: state.Users.Users,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeActivity: (data) => dispatch(changeACTIVITY(data)),

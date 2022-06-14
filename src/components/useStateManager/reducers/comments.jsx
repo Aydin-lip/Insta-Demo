@@ -1,3 +1,4 @@
+import { CommentsAPI } from "../actions/typeActions";
 import axios from "axios";
 
 let initialState = {
@@ -19,6 +20,9 @@ CommentsAPIfunc();
 
 const Comments = (state = initialState, { type, payload }) => {
   switch (type) {
+    case CommentsAPI:
+      return { ...state, Comments: payload };
+
     default:
       return state;
   }

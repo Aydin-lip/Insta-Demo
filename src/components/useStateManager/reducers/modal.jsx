@@ -1,4 +1,5 @@
 import {
+  Logo,
   changeModalShare,
   changeModalComment,
   changeModalMoreOption,
@@ -14,6 +15,7 @@ import {
 } from "../actions/typeActions";
 
 const initialState = {
+  Logo: true,
   Share: false,
   Comment: false,
   MoreOption: [false, false, false],
@@ -30,6 +32,9 @@ const initialState = {
 
 const Modal = (state = initialState, { type, payload }) => {
   switch (type) {
+    case Logo:
+      return { ...state, Logo: payload };
+
     case changeModalShare:
       return { ...state, Share: payload };
 

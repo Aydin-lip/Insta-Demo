@@ -16,14 +16,20 @@ const SendComment = (props) => {
     } else {
       setDisabled(true);
     }
+    if (!Disabled) {
+      if (event.nativeEvent.key === "Enter") {
+        SaveCommentFunc();
+      }
+    }
   };
 
   const SaveCommentFunc = () => {
     props.SaveComment([]);
     props.SaveComment([
       ...props.MeComments,
-      { id: props.data, message: Input.current.value },
+      { id: props.data, message: Input.current.value, like: false },
     ]);
+    setDisabled(true);
     Input.current.value = "";
   };
 
@@ -63,7 +69,7 @@ const SendComment = (props) => {
           className="mb-0 border-0 bg-white w-100 input-noPlace"
           placeholder="Add a comment..."
           ref={Input}
-          onChange={changeInputComment}
+          onKeyUp={changeInputComment}
         />
         <button
           className="btn text-primary ms-auto border-0 bg-white mt-1 fw-09500 input-send-comment"

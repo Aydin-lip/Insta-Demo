@@ -18,9 +18,9 @@ const FooterProfile = () => {
       <div className="footer-a text-muted mb-5 mt-3 text-center">
         <div className="">
           {tags.map((tag, index) => (
-            <a key={index} href="#">
+            <span key={index} className="cursor">
               {tag}
-            </a>
+            </span>
           ))}
         </div>
         <div>

@@ -1,5 +1,9 @@
 import * as INFOR from "./typeActions";
 
+export const LOGO = (data) => ({
+  type: INFOR.Logo,
+  payload: data,
+});
 export const POSTSLIKE = (data) => ({
   type: INFOR.PostsLikeInfor,
   payload: data,
@@ -73,6 +77,10 @@ export const POSTSapi = (data) => ({
   type: INFOR.PostsAPI,
   payload: data,
 });
+export const COMMENTSapi = (data) => ({
+  type: INFOR.CommentsAPI,
+  payload: data,
+});
 export const ERRORUSERS = (data) => ({
   type: INFOR.ErrorUsers,
   payload: data,
@@ -84,6 +92,14 @@ export const ERRORPOSTS = (data) => ({
 
 export const SAVEcomments = (data) => ({
   type: INFOR.Comments,
+  payload: data,
+});
+export const SETfollowers = (data) => ({
+  type: INFOR.Followers,
+  payload: data,
+});
+export const SETfollowing = (data) => ({
+  type: INFOR.Following,
   payload: data,
 });
 

@@ -1,7 +1,25 @@
-import { Component } from "react";
+import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const User = (props) => {
-  return (
+  const [Loading, setLoading] = useState(true);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 1000);
+
+  return Loading ? (
+    <>
+      <div className="d-flex mt-1">
+        <Skeleton width="40px" height="40px" circle="true" />
+        <div className="ms-2">
+          <Skeleton width="130px" height="15px" />
+          <Skeleton width="80px" height="15px" />
+        </div>
+      </div>
+    </>
+  ) : (
     <>
       <div className="d-flex align-items-center div-user">
         <div>

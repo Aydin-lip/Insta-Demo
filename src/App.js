@@ -31,21 +31,26 @@ import Help from "./components/main Pages/account/setting/Settings/help";
 import MessagesBox from "./components/main Pages/directs/messages/messages";
 import MessagesGeneral from "./components/main Pages/directs/messages/messagesGeneral";
 import Direct from "./components/main Pages/directs/direct/direct";
+import Explore from "./components/main Pages/explore/explore";
 
 import SetState from "./components/setState";
 
 import UnDefined from "./components/undefined";
 
 import { connect } from "react-redux";
+import { LOGO } from "./components/useStateManager/actions/actions";
 
 const App = (props) => {
   const [Logo, setLogo] = useState(true);
+
   setTimeout(() => {
     setLogo(false);
   }, 2000);
 
   return Logo ? (
-    <FirstLogo />
+    <>
+      <FirstLogo />
+    </>
   ) : (
     <>
       {props.ErrorPosts === true || props.ErrorUsers === true ? (
@@ -62,83 +67,86 @@ const App = (props) => {
       ) : (
         <>
           <SetState />
-          <Routes>
-            <Route path="/" element={<Protect />}>
-              <Route path="direct" element={<DirectInbox />}>
-                <Route path="inbox" element={<MessagesBox />} />
-                <Route path="inbox/general" element={<MessagesGeneral />} />
-                <Route
-                  path="bot"
-                  element={
-                    <Direct
-                      data={{
-                        profile: "/imgs/profile/bot.jpeg",
-                        name: "bot 🤖",
-                        username: "Bot",
-                      }}
-                    />
-                  }
-                />
+          {props.Logo ? null : (
+            <Routes>
+              <Route path="/" element={<Protect />}>
+                <Route path="direct" element={<DirectInbox />}>
+                  <Route path="inbox" element={<MessagesBox />} />
+                  <Route path="inbox/general" element={<MessagesGeneral />} />
+                  <Route
+                    path="bot"
+                    element={
+                      <Direct
+                        data={{
+                          profile: "/imgs/profile/bot.jpeg",
+                          name: "bot 🤖",
+                          username: "Bot",
+                        }}
+                      />
+                    }
+                  />
+                </Route>
+                <Route path="explore" element={<Explore />} />
+                <Route path="account" element={<Settings />}>
+                  <Route path="edit" element={<EditProfile />} />
+                  <Route
+                    path="professional_account-settings"
+                    element={<ProfessionalAccount />}
+                  />
+                  <Route path="password/change" element={<ChangePassword />} />
+                  <Route path="manage_access" element={<AppsAndWebsites />} />
+                  <Route
+                    path="emails/settings"
+                    element={<EmailNotifications />}
+                  />
+                  <Route
+                    path="push/web/settings"
+                    element={<PushNotifications />}
+                  />
+                  <Route path="contacts_history" element={<ManageContacts />} />
+                  <Route
+                    path="privacy_and_security"
+                    element={<PrivacyAndSecurity />}
+                  />
+                  <Route
+                    path="session/login_activity"
+                    element={<LoginActivity />}
+                  />
+                  <Route
+                    path="emails/emails_send"
+                    element={<EmailsFromInstagram />}
+                  />
+                  <Route path="settings/help" element={<Help />} />
+                </Route>
+                <Route path={props.Account.username} element={<Profile />}>
+                  <Route
+                    path=""
+                    element={<ProfilePosts data={{ Posts: [] }} />}
+                  />
+                  <Route path="saved" element={<SavedProfile />} />
+                  <Route path="tagged" element={<TaggedProfile />} />
+                  <Route
+                    path="followers"
+                    element={<ProfilePosts data={{ Posts: [] }} />}
+                  />
+                  <Route
+                    path="following"
+                    element={<ProfilePosts data={{ Posts: [] }} />}
+                  />
+                  <Route
+                    path="hashtag_following"
+                    element={<ProfilePosts data={{ Posts: [] }} />}
+                  />
+                </Route>
               </Route>
-              <Route path="account" element={<Settings />}>
-                <Route path="edit" element={<EditProfile />} />
-                <Route
-                  path="professional_account-settings"
-                  element={<ProfessionalAccount />}
-                />
-                <Route path="password/change" element={<ChangePassword />} />
-                <Route path="manage_access" element={<AppsAndWebsites />} />
-                <Route
-                  path="emails/settings"
-                  element={<EmailNotifications />}
-                />
-                <Route
-                  path="push/web/settings"
-                  element={<PushNotifications />}
-                />
-                <Route path="contacts_history" element={<ManageContacts />} />
-                <Route
-                  path="privacy_and_security"
-                  element={<PrivacyAndSecurity />}
-                />
-                <Route
-                  path="session/login_activity"
-                  element={<LoginActivity />}
-                />
-                <Route
-                  path="emails/emails_send"
-                  element={<EmailsFromInstagram />}
-                />
-                <Route path="settings/help" element={<Help />} />
-              </Route>
-              <Route path={props.Account.username} element={<Profile />}>
-                <Route
-                  path=""
-                  element={<ProfilePosts data={{ Posts: [] }} />}
-                />
-                <Route path="saved" element={<SavedProfile />} />
-                <Route path="tagged" element={<TaggedProfile />} />
-                <Route
-                  path="followers"
-                  element={<ProfilePosts data={{ Posts: [] }} />}
-                />
-                <Route
-                  path="following"
-                  element={<ProfilePosts data={{ Posts: [] }} />}
-                />
-                <Route
-                  path="hashtag_following"
-                  element={<ProfilePosts data={{ Posts: [] }} />}
-                />
-              </Route>
-            </Route>
-            <Route path="/accounts/create" element={<SignUp />} />
-            <Route
-              path="/accounts/password/reset"
-              element={<ForgetPassword />}
-            />
-            <Route path="*" element={<UnDefined />} />
-          </Routes>
+              <Route path="/accounts/create" element={<SignUp />} />
+              <Route
+                path="/accounts/password/reset"
+                element={<ForgetPassword />}
+              />
+              <Route path="*" element={<UnDefined />} />
+            </Routes>
+          )}
         </>
       )}
     </>
@@ -146,10 +154,14 @@ const App = (props) => {
 };
 
 const mapStateToProps = (state) => ({
+  Logo: state.Modal.Logo,
   Account: state.Information.Account,
   ErrorUsers: state.Users.Error,
   ErrorPosts: state.Posts.Error,
   PostsAPI: state.Posts.Posts,
 });
+const mapDispatchToProps = (dispatch) => ({
+  setLogo: (data) => dispatch(LOGO(data)),
+});
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

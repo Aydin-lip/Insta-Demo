@@ -1,3 +1,4 @@
+export const Logo = "LOGO";
 export const PostsLikeInfor = "CHANGE-POSTS-LIKES";
 export const PostsSavedInfor = "CHANGE-POSTS-SAVED";
 export const changeModalShare = "CHANGE-MODAL-SHARE";
@@ -16,7 +17,10 @@ export const Account = "ACCOUNT";
 export const Loggin = "LOGGIN";
 export const UsersAPI = "USERSAPI";
 export const PostsAPI = "POSTSAPI";
+export const CommentsAPI = "COMMENTSAPI";
 export const ErrorUsers = "ERROR-NET-USERS";
 export const ErrorPosts = "ERROR-NET-POSTS";
 export const Comments = "SEND-COMMENTS";
+export const Followers = "FOLLOWERS";
+export const Following = "FOLLOWING";
 export const MessageDirect = "SEND-MESSAGE-DIRECT";

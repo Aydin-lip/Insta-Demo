@@ -15,9 +15,11 @@ const Posts = (props) => {
         .fill({})
         .map((num) => {
           let user = props.UsersAPI.filter((u) => u.follow.following === true);
-          let sum = user[Math.floor(Math.random() * user.length)];
-          if (item.username === sum.login.username) {
-            AllPosts = [...AllPosts, item];
+          if (user.length >= 1) {
+            let sum = user[Math.floor(Math.random() * user.length)];
+            if (item.username === sum.login.username) {
+              AllPosts = [...AllPosts, item];
+            }
           }
         });
     });
