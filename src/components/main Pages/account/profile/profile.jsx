@@ -20,11 +20,11 @@ const Profile = (props) => {
     if (document.location.pathname === `/${props.Account.username}`) {
       btns[0].classList.add("active-btn-profile");
     } else if (
-      document.location.pathname === `${props.Account.username}/saved`
+      document.location.pathname === `/${props.Account.username}/saved`
     ) {
       btns[1].classList.add("active-btn-profile");
     } else if (
-      document.location.pathname === `${props.Account.username}/tagged`
+      document.location.pathname === `/${props.Account.username}/tagged`
     ) {
       btns[2].classList.add("active-btn-profile");
     }

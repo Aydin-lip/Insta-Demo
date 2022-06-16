@@ -14,6 +14,7 @@ class MorOptions extends Component {
           onHide={() => {
             this.props.changeMoreOption([false, false, false]);
           }}
+          style={{ background: "#00000060" }}
         >
           <Modal.Body className="p-0">
             <div

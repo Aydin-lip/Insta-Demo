@@ -1,65 +1,29 @@
 import UserFollowing from "./userFollowing";
 import { RingLoader } from "react-spinners";
+import { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import SetState from "../../../../setState";
 
-const BoxsFollowing = () => {
+const BoxsFollowing = (props) => {
+  const [Users, setUsers] = useState([]);
+
+  useEffect(() => {
+    let user = [];
+    props.UsersAPI.filter((u) => {
+      props.Following.filter((f) => {
+        if (u.id === f) {
+          user.push(u);
+        }
+      });
+    });
+    setUsers(user);
+  }, []);
+
   return (
     <>
-      <UserFollowing
-        data={{
-          Profile: "/imgs/profile/userProfile.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-        }}
-      />
-      <UserFollowing
-        data={{
-          Profile: "/imgs/profile/userProfile.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-        }}
-      />
-      <UserFollowing
-        data={{
-          Profile: "/imgs/profile/userProfile.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-        }}
-      />
-      <UserFollowing
-        data={{
-          Profile: "/imgs/profile/userProfile.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-        }}
-      />
-      <UserFollowing
-        data={{
-          Profile: "/imgs/profile/userProfile.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-        }}
-      />
-      <UserFollowing
-        data={{
-          Profile: "/imgs/profile/userProfile.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-        }}
-      />
-      <UserFollowing
-        data={{
-          Profile: "/imgs/profile/userProfile.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-        }}
-      />
-      <UserFollowing
-        data={{
-          Profile: "/imgs/profile/userProfile.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-        }}
-      />
+      {Users.map((u, index) => (
+        <UserFollowing key={index} data={u} />
+      ))}
 
       <div
         className="w-100 d-flex justify-content-center pt-3"
@@ -70,4 +34,10 @@ const BoxsFollowing = () => {
     </>
   );
 };
-export default BoxsFollowing;
+
+const mapStateToProps = (state) => ({
+  UsersAPI: state.Users.Users,
+  Following: state.PostsInfor.Following,
+});
+
+export default connect(mapStateToProps)(BoxsFollowing);

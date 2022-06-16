@@ -23,6 +23,11 @@ const Navbar = (props) => {
       props.change([false, true, false, false, false]);
     } else if (document.location.pathname.includes("/explore")) {
       props.change([false, false, false, true, false]);
+    } else if (
+      document.location.pathname.includes(`${props.Account.username}`) ||
+      document.location.pathname.includes("/account")
+    ) {
+      props.change([false, false, false, false, false]);
     }
   }, []);
 
@@ -312,6 +317,7 @@ const Navbar = (props) => {
 const mapStateToProps = (state) => ({
   ShowWindow: state.Modal.NavbarWindow,
   Activity: state.Modal.Activity,
+  Account: state.Information.Account,
 });
 const mapDispatchToProps = (dispatch) => ({
   change: (data) => dispatch(changeNAVBARwindow(data)),

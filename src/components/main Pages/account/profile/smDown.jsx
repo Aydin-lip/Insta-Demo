@@ -52,12 +52,12 @@ const ProfileSmDown = (props) => {
               className="d-flex flex-column text-center"
               style={{ marginBottom: "-2px" }}
             >
-              <span className="fw-500">0</span>
+              <span className="fw-500">{props.PostsMe.length}</span>
               <span className="text-muted">posts</span>
             </div>
           </div>
-          <Followers Followers="4,398" />
-          <Following Following="245" />
+          <Followers Followers={props.Followers.length - 2} />
+          <Following Following={props.Following.length - 2} />
         </div>
         <div className="row border-top border-bottom">
           <button className="col-4 btn-profile-sm active-btn-profile-sm position-relative d-flex justify-content-center align-items-center p-2">
@@ -229,6 +229,9 @@ const ProfileSmDown = (props) => {
 
 const mapStateToProps = (state) => ({
   Account: state.Information.Account,
+  PostsMe: state.Information.Posts,
+  Followers: state.PostsInfor.Followers,
+  Following: state.PostsInfor.Following,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeProfile: (data) => dispatch(changePROFILE(data)),

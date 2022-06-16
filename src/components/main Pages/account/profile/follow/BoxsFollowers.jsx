@@ -1,82 +1,35 @@
+import { useState, useEffect } from "react";
 import UserFollowers from "./userFollowers";
 
-const BoxFollowers = () => {
+import { connect } from "react-redux";
+
+const BoxFollowers = (props) => {
+  const [Users, setUsers] = useState([]);
+
+  useEffect(() => {
+    let user = [];
+    props.UsersAPI.filter((u) => {
+      props.Followers.filter((f) => {
+        if (u.id === f) {
+          user.push(u);
+        }
+      });
+    });
+    setUsers(user);
+  }, []);
+
   return (
     <>
-      <UserFollowers
-        data={{
-          Profile: "/imgs/profile/user2.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-          Follow: true,
-        }}
-      />
-      <UserFollowers
-        data={{
-          Profile: "/imgs/profile/user2.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-          follow: false,
-        }}
-      />
-      <UserFollowers
-        data={{
-          Profile: "/imgs/profile/user2.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-          Follow: true,
-        }}
-      />
-      <UserFollowers
-        data={{
-          Profile: "/imgs/profile/user2.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-          Follow: true,
-        }}
-      />
-      <UserFollowers
-        data={{
-          Profile: "/imgs/profile/user2.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-          Follow: true,
-        }}
-      />
-      <UserFollowers
-        data={{
-          Profile: "/imgs/profile/user2.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-          Follow: false,
-        }}
-      />
-      <UserFollowers
-        data={{
-          Profile: "/imgs/profile/user2.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-          Follow: true,
-        }}
-      />
-      <UserFollowers
-        data={{
-          Profile: "/imgs/profile/user2.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-          Follow: false,
-        }}
-      />
-      <UserFollowers
-        data={{
-          Profile: "/imgs/profile/user2.jpg",
-          Username: "mahdi-vh12",
-          Name: "mahdi.p",
-          Follow: true,
-        }}
-      />
+      {Users.map((u, index) => (
+        <UserFollowers key={index} data={u} />
+      ))}
     </>
   );
 };
 
-export default BoxFollowers;
+const mapStateToProps = (state) => ({
+  UsersAPI: state.Users.Users,
+  Followers: state.PostsInfor.Followers,
+});
+
+export default connect(mapStateToProps)(BoxFollowers);

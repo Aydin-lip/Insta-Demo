@@ -8,7 +8,6 @@
 }
 .input-search-nav:focus {
   border: none;
-  padding-left: 1rem;
 }
 .input-search-nav:focus::placeholder {
   transform: none;
@@ -46,6 +45,9 @@
 }
 .boxShadow {
   box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), 0.0975);
+}
+.pl-1 {
+  padding-left: 1rem !important;
 }
 
 /*                     Main / Right                   */
@@ -377,6 +379,12 @@
 /*                           Account/Posts                */
 .img-post-hover:hover .show-likeANDcomment {
   display: flex !important;
+}
+.noPost-AllPosts {
+  background: url(../../../public/imgs/instaLogo/allLogo.png);
+  width: 65px;
+  height: 65px;
+  background-position: -190px 135px;
 }
 
 /*                          Account/Saved                      */

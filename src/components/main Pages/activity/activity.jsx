@@ -38,7 +38,7 @@ const Activity = (props) => {
             <div className="w-100 h-100">
               <div className="p-2 border-bottom">
                 <span className="fs-09 fw-500 ps-1">Yesterday</span>
-                <LikePost data={Userss[5]} />
+                <LikePost data={Userss[2]} />
               </div>
               <div className="p-2 border-bottom">
                 <span className="fs-09 fw-500 ps-1">This Week</span>

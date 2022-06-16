@@ -1,15 +1,18 @@
+import CommentProfile from "./comments";
+
 const PostProfile = (props) => {
   return (
     <>
       <div className="w-100 h-100 position-relative">
-        <a href="#" className="img-post-hover">
+        <div className="img-post-hover cursor">
+          <CommentProfile data={props.data} />
           <img
-            src={props.data.Post[0]}
+            src={props.data.postsUrl[0]}
             width="100%"
             height="100%"
             alt="post photo"
           />
-          {props.data.Post.length > 1 ? (
+          {props.data.postsUrl.length > 1 ? (
             <span
               className="position-absolute"
               style={{ top: ".3rem", right: ".4rem" }}
@@ -32,14 +35,14 @@ const PostProfile = (props) => {
           >
             <div className="text-white me-3">
               <i className="fa fa-heart" style={{ fontSize: "1.2rem" }}></i>
-              <span className="mx-2 fw-500">{props.data.Likes}</span>
+              <span className="mx-2 fw-500">{props.data.infor.likes}</span>
             </div>
             <div className="text-white">
               <i className="fa fa-comments" style={{ fontSize: "1.2rem" }}></i>
-              <span className="mx-2 fw-500">{props.data.Comments}</span>
+              <span className="mx-2 fw-500">0</span>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </>
   );

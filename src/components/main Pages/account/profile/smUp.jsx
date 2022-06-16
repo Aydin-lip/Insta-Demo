@@ -42,11 +42,11 @@ const ProfileSmUp = (props) => {
           </div>
           <div className="py-3 mt-2 d-flex">
             <div className="me-4">
-              <span className="me-1 fw-500">0</span>
+              <span className="me-1 fw-500">{props.PostsMe.length}</span>
               <span>posts</span>
             </div>
-            <Followers Followers="4,398" />
-            <Following Following="245" />
+            <Followers Followers={props.Followers.length - 2} />
+            <Following Following={props.Following.length - 2} />
           </div>
           <div className="mb-5">
             <div className="fw-500">
@@ -66,6 +66,9 @@ const ProfileSmUp = (props) => {
 
 const mapStateToProps = (state) => ({
   Account: state.Information.Account,
+  PostsMe: state.Information.Posts,
+  Followers: state.PostsInfor.Followers,
+  Following: state.PostsInfor.Following,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeProfile: (data) => dispatch(changePROFILE(data)),

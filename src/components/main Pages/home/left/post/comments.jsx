@@ -139,7 +139,7 @@ const Comments = (props) => {
                   className="d-flex aligm-items-center border-bottom rounded-3"
                   style={{ padding: ".8rem" }}
                 >
-                  <a href="#">
+                  <div>
                     {Loading ? (
                       <Skeleton width="32px" height="32px" circle="true" />
                     ) : (
@@ -150,7 +150,7 @@ const Comments = (props) => {
                         className="rounded-circle"
                       />
                     )}
-                  </a>
+                  </div>
                   <span className="cursor ps-2 pt-1 fw-09500">
                     {Loading ? (
                       <>

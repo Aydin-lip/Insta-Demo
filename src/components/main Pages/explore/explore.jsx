@@ -43,10 +43,10 @@ const Explore = (props) => {
       {Posts.length >= 1 ? (
         <>
           <div
-            className="container"
+            className="container p-0"
             style={{ marginTop: "5rem", maxWidth: "963px" }}
           >
-            <div className="row">
+            <div className="row ms-1 ms-md-4">
               <div className="col-4 p-0">
                 <Post size="sm" data={Posts[0]} />
                 <Post size="sm" data={Posts[1]} />

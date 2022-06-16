@@ -20,7 +20,7 @@ const SwiperPost = (props) => {
       >
         {props.data.map((p, index) => (
           <SwiperSlide key={index}>
-            <img src={p} alt="post" className="" width="100%" height="100%" />
+            <img src={p} alt="post" width="100%" height="100%" />
           </SwiperSlide>
         ))}
       </Swiper>

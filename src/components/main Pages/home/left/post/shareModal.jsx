@@ -39,6 +39,7 @@ const ShareModal = (props) => {
         onHide={() => {
           props.ChangeModal(false);
         }}
+        style={{ background: "#00000060" }}
       >
         <Modal.Body className="p-0">
           <div

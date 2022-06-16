@@ -32,6 +32,7 @@ import MessagesBox from "./components/main Pages/directs/messages/messages";
 import MessagesGeneral from "./components/main Pages/directs/messages/messagesGeneral";
 import Direct from "./components/main Pages/directs/direct/direct";
 import Explore from "./components/main Pages/explore/explore";
+import AllPosts from "./components/main Pages/account/profile/saved/allPosts";
 
 import SetState from "./components/setState";
 
@@ -118,11 +119,12 @@ const App = (props) => {
                   />
                   <Route path="settings/help" element={<Help />} />
                 </Route>
+                <Route
+                  path={`${props.Account.username}/saved/all-posts`}
+                  element={<AllPosts />}
+                />
                 <Route path={props.Account.username} element={<Profile />}>
-                  <Route
-                    path=""
-                    element={<ProfilePosts data={{ Posts: [] }} />}
-                  />
+                  <Route path="" element={<ProfilePosts />} />
                   <Route path="saved" element={<SavedProfile />} />
                   <Route path="tagged" element={<TaggedProfile />} />
                   <Route

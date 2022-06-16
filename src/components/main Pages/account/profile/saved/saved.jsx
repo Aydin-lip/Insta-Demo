@@ -36,28 +36,6 @@ const SavedProfile = (props) => {
                 </div>
               </div>
             </div>
-            <div className="col-4">
-              <div className="w-100 d-flex justify-content-center pt-3">
-                {FuncSetLoadingSaved()}
-                <div
-                  className="d-flex"
-                  style={{
-                    width: "300px",
-                    height: "300px",
-                    borderRadius: "5px",
-                  }}
-                >
-                  <div className="me-1">
-                    <Skeleton width="145px" height="145px" />
-                    <Skeleton width="145px" height="145px" />
-                  </div>
-                  <div className="">
-                    <Skeleton width="145px" height="145px" />
-                    <Skeleton width="145px" height="145px" />
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </>
       ) : (
@@ -96,6 +74,7 @@ const SavedProfile = (props) => {
 
 const mapStateToProps = (state) => ({
   AddSavedBox: state.Modal.AddSavedBox,
+  Saved: state.PostsInfor.Saved,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeAddSavedBox: (data) => dispatch(changeADDsavedBox(data)),

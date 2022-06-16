@@ -18,7 +18,6 @@ const LikeCommentShare = (props) => {
   useEffect(() => {
     let like = props.Likes.filter((n) => n === props.data.id);
     let save = props.Saved.filter((n) => n === props.data.id);
-    // console.log(props.data.id, props.data.infor.like);
     if (like.length >= 1) {
       setLikeState(true);
     }
@@ -79,7 +78,9 @@ const LikeCommentShare = (props) => {
               ></path>
             </svg>
           </span>
-          <Comments data={props.data} />
+          {!props.data.id === "87" || !props.data.id === "96" ? (
+            <Comments data={props.data} />
+          ) : null}
         </div>
         <div
           className="cursor share-post iconB-post mx-2"

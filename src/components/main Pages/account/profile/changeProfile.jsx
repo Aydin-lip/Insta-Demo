@@ -9,19 +9,21 @@ import {
 const ChangeProfile = (props) => {
   const Src = useRef();
   const change = () => {
-    props.changeAccount({
-      username: props.Account.username,
-      password: props.Account.password,
-      email: props.Account.email,
-      name: props.Account.name,
-      have: true,
-      avatar: Src.current.value,
-      bio: props.Account.bio,
-      rul: props.Account.rul,
-      phone: props.Account.phone,
-      gender: props.Account.gender,
-      website: props.Account.website,
-    });
+    if (Src.current.value.length >= 8) {
+      props.changeAccount({
+        username: props.Account.username,
+        password: props.Account.password,
+        email: props.Account.email,
+        name: props.Account.name,
+        have: true,
+        avatar: Src.current.value,
+        bio: props.Account.bio,
+        rul: props.Account.rul,
+        phone: props.Account.phone,
+        gender: props.Account.gender,
+        website: props.Account.website,
+      });
+    }
   };
   return (
     <>

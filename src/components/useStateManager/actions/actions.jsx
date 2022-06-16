@@ -102,8 +102,17 @@ export const SETfollowing = (data) => ({
   type: INFOR.Following,
   payload: data,
 });
+export const SEARCH = (data) => ({
+  type: INFOR.Search,
+  payload: data,
+});
 
 export const MESSAGE = (data) => ({
   type: INFOR.MessageDirect,
+  payload: data,
+});
+
+export const MEPOSTS = (data) => ({
+  type: INFOR.MePosts,
   payload: data,
 });

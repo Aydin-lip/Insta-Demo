@@ -23,4 +23,6 @@ export const ErrorPosts = "ERROR-NET-POSTS";
 export const Comments = "SEND-COMMENTS";
 export const Followers = "FOLLOWERS";
 export const Following = "FOLLOWING";
+export const Search = "SEARCH";
 export const MessageDirect = "SEND-MESSAGE-DIRECT";
+export const MePosts = "ME-POSTS";
