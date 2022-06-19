@@ -21,7 +21,7 @@ const Activity = (props) => {
     <>
       <div
         className="position-absolute overflow-auto bg-white rounded-3 border box-activity boxShadow"
-        style={{ zIndex: "3" }}
+        style={{ zIndex: "3", cursor: "default" }}
       >
         {loading ? (
           <>

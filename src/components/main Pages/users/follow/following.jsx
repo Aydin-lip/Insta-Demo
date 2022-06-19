@@ -18,7 +18,7 @@ const Following = (props) => {
         }}
       >
         <NavLink
-          to={`/${props.Account.username}/following`}
+          to={`/${props.data.login.username}/following`}
           className="text-decoration-none text-black"
         >
           <span className="me-1 fw-500">{props.Following}</span>
@@ -28,7 +28,7 @@ const Following = (props) => {
 
       <div className="col-4 d-flex d-sm-none justify-content-center align-items-center">
         <NavLink
-          to={`/${props.Account.username}/followers`}
+          to={`/${props.data.login.username}/followers`}
           className="text-decoration-none text-black"
         >
           <div
@@ -49,7 +49,7 @@ const Following = (props) => {
         show={Show}
         onHide={() => {
           setShow(false);
-          navigate(`/${props.Account.username}`, { replace: true });
+          navigate(`/${props.data.login.username}`, { replace: true });
         }}
       >
         <Modal.Body className="p-0">
@@ -73,7 +73,9 @@ const Following = (props) => {
                   style={{ top: ".5rem", right: "1rem" }}
                   onClick={() => {
                     setShow(false);
-                    navigate(`/${props.Account.username}`, { replace: true });
+                    navigate(`/${props.data.login.username}`, {
+                      replace: true,
+                    });
                   }}
                 >
                   <svg
@@ -108,7 +110,7 @@ const Following = (props) => {
               </div>
               <div className="border-bottom d-flex">
                 <NavLink
-                  to={`/${props.Account.username}/following`}
+                  to={`/${props.data.login.username}/following`}
                   className="text-decoration-none text-black"
                   style={{ width: "50%" }}
                 >
@@ -122,7 +124,7 @@ const Following = (props) => {
                   </button>
                 </NavLink>
                 <NavLink
-                  to={`/${props.Account.username}/hashtag_following`}
+                  to={`/${props.data.login.username}/hashtag_following`}
                   className="text-decoration-none text-black"
                   style={{ width: "50%" }}
                 >
@@ -138,7 +140,7 @@ const Following = (props) => {
               </div>
               <div className="overflow-auto" style={{ height: "77%" }}>
                 {document.location.pathname ===
-                `/${props.Account.username}/following` ? (
+                `/${props.data.login.username}/following` ? (
                   <BoxsFollowing />
                 ) : (
                   <Hashtags />

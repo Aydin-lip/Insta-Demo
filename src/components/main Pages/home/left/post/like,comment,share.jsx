@@ -78,7 +78,7 @@ const LikeCommentShare = (props) => {
               ></path>
             </svg>
           </span>
-          {!props.data.id === "87" || !props.data.id === "96" ? (
+          {props.data.id !== 87 && props.data.id !== 96 ? (
             <Comments data={props.data} />
           ) : null}
         </div>

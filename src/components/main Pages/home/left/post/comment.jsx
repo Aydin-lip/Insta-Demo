@@ -1,31 +1,58 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import MorOptions from "./moreOptions";
 
 import { connect } from "react-redux";
-import { changeMODALmoreOption } from "../../../../useStateManager/actions/actions";
+import {
+  changeMODALmoreOption,
+  SAVEcomments,
+} from "../../../../useStateManager/actions/actions";
+import { Modal } from "react-bootstrap";
+import { BeatLoader } from "react-spinners";
+import { NavLink } from "react-router-dom";
 
 const Comment = (props) => {
-  return (
+  const [Like, setLike] = useState(props.data.like);
+  const [ShowMore, setShowMore] = useState(false);
+  const [Loading, setLoading] = useState(false);
+  const [ShowComment, setShowComment] = useState(true);
+
+  const DeleteMeComment = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      let MeComments = props.MeComments.filter(
+        (c) => props.data.message !== c.comment
+      );
+      props.changeMeComment(MeComments);
+      setShowComment(false);
+    }, 2000);
+  };
+
+  return ShowComment ? (
     <>
       <div className="d-flex" style={{ padding: ".8rem" }}>
-        <a href="#" style={{ height: "max-content" }}>
+        <NavLink
+          to={`/${props.data.user.login.username}`}
+          className="text-decoration-none text-dark"
+          style={{ height: "max-content" }}
+        >
           <img
             src={props.data.user.relationship.avatar}
             width="32px"
             alt="profilr"
             className="rounded-circle"
           />
-        </a>
+        </NavLink>
         <div className="d-flex w-100">
           <div>
             <div className="d-flex">
-              <a
-                href="#"
-                className="text-decoration-none text-black ps-2 fw-09500"
+              <NavLink
+                to={`/${props.data.user.login.username}`}
+                className="text-decoration-none text-dark ps-2 fw-09500"
                 style={{ height: "max-content" }}
               >
                 <span>{props.data.user.login.username}</span>
-              </a>
+              </NavLink>
               <p className="mb-2 ps-2">{props.data.message}</p>
             </div>
             <div className="text-muted ms-2">
@@ -40,38 +67,65 @@ const Comment = (props) => {
                 {props.data.time ? (
                   <>{props.data.likes} like</>
                 ) : (
-                  <>{Math.floor(Math.random() * 10)} Like</>
+                  <>
+                    {Like
+                      ? props.data.message.length + 1
+                      : props.data.message.length}
+                    Like
+                  </>
                 )}
               </span>
               <span className="fw-09500 fs-8">Reply</span>
-              <span
-                className="cursor ms-3"
-                onClick={() => {
-                  props.changeMoreOption([true, false, false]);
-                }}
-              >
-                <svg
-                  color="#6c757d"
-                  fill="#6c757d"
-                  height="24"
-                  role="img"
-                  viewBox="0 0 24 24"
-                  width="24"
+              {props.data.time ? (
+                <span
+                  className="cursor ms-3"
+                  onClick={() => {
+                    setShowMore(true);
+                  }}
                 >
-                  <circle cx="12" cy="12" r="1.5"></circle>
-                  <circle cx="6" cy="12" r="1.5"></circle>
-                  <circle cx="18" cy="12" r="1.5"></circle>
-                </svg>
-              </span>
+                  <svg
+                    color="#6c757d"
+                    fill="#6c757d"
+                    height="24"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    width="24"
+                  >
+                    <circle cx="12" cy="12" r="1.5"></circle>
+                    <circle cx="6" cy="12" r="1.5"></circle>
+                    <circle cx="18" cy="12" r="1.5"></circle>
+                  </svg>
+                </span>
+              ) : (
+                <span
+                  className="cursor ms-3"
+                  onClick={() => {
+                    props.changeMoreOption([true, false, false]);
+                  }}
+                >
+                  <svg
+                    color="#6c757d"
+                    fill="#6c757d"
+                    height="24"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    width="24"
+                  >
+                    <circle cx="12" cy="12" r="1.5"></circle>
+                    <circle cx="6" cy="12" r="1.5"></circle>
+                    <circle cx="18" cy="12" r="1.5"></circle>
+                  </svg>
+                </span>
+              )}
             </div>
           </div>
-          <div
-            className="cursor ms-auto"
-            onClick={FuncLike}
-            style={{ height: "max-content" }}
-          >
-            {props.data.like === true ? (
-              <span>
+          <div className="cursor ms-auto" style={{ height: "max-content" }}>
+            {Like ? (
+              <span
+                onClick={() => {
+                  setLike(false);
+                }}
+              >
                 <svg
                   aria-label="Unlike"
                   color="#ed4956"
@@ -85,7 +139,11 @@ const Comment = (props) => {
                 </svg>
               </span>
             ) : (
-              <span>
+              <span
+                onClick={() => {
+                  setLike(true);
+                }}
+              >
                 <svg
                   aria-label="Like"
                   color="#262626"
@@ -102,17 +160,55 @@ const Comment = (props) => {
           </div>
         </div>
       </div>
+
+      <Modal
+        centered
+        show={ShowMore}
+        onHide={() => {
+          setShowMore(false);
+        }}
+        style={{ background: "#00000060" }}
+      >
+        <Modal.Body className="p-0">
+          <div
+            className="d-flex flex-column border bg-white p-1"
+            style={{ borderRadius: "10px", maxWidth: "400px", width: "95vw" }}
+          >
+            <button
+              className="border-0 item-morOption fw-09500 p-2 bg-white text-danger"
+              onClick={DeleteMeComment}
+            >
+              {Loading ? (
+                <>
+                  <BeatLoader size="10px" margin="2px" />
+                </>
+              ) : (
+                "Delete"
+              )}
+            </button>
+            <button
+              className="border-0 item-morOption fw-09500 p-2 border-top bg-white"
+              onClick={() => {
+                setShowMore(false);
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
-  );
-  function FuncLike() {}
+  ) : null;
 };
 
 const mapStateToProps = (state) => ({
   Like: state.PostsInfor.Likes,
   UsersAPI: state.Users.Users,
+  MeComments: state.PostsInfor.Comments,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeMoreOption: (data) => dispatch(changeMODALmoreOption(data)),
+  changeMeComment: (data) => dispatch(SAVEcomments(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comment);

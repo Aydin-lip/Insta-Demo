@@ -12,7 +12,6 @@ const PostsAPIfunc = async () => {
       "https://randomapi.com/api/5da445885005e68d26ae76be2eef5544"
     );
     initialState.Posts = response.data.results[0].posts;
-    console.log(initialState.Posts);
   } catch (error) {
     initialState.Error = true;
   }

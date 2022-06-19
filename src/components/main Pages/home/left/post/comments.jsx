@@ -15,6 +15,7 @@ import {
   SAVEcomments,
 } from "../../../../useStateManager/actions/actions";
 import { ClipLoader } from "react-spinners";
+import { NavLink } from "react-router-dom";
 
 const Comments = (props) => {
   const [Show, setShow] = useState(false);
@@ -143,12 +144,17 @@ const Comments = (props) => {
                     {Loading ? (
                       <Skeleton width="32px" height="32px" circle="true" />
                     ) : (
-                      <img
-                        src={User[0].relationship.avatar}
-                        width="32px"
-                        alt="profilr"
-                        className="rounded-circle"
-                      />
+                      <NavLink
+                        to={`/${User[0].login.username}`}
+                        className="text-decoration-none text-dark"
+                      >
+                        <img
+                          src={User[0].relationship.avatar}
+                          width="32px"
+                          alt="profilr"
+                          className="rounded-circle"
+                        />
+                      </NavLink>
                     )}
                   </div>
                   <span className="cursor ps-2 pt-1 fw-09500">
@@ -158,7 +164,12 @@ const Comments = (props) => {
                         <Skeleton width="100px" height="10px" />
                       </>
                     ) : (
-                      <span>{props.data.username}</span>
+                      <NavLink
+                        to={`/${User[0].login.username}`}
+                        className="text-decoration-none text-dark"
+                      >
+                        <span>{props.data.username}</span>
+                      </NavLink>
                     )}
                   </span>
                   <div
@@ -188,17 +199,27 @@ const Comments = (props) => {
                   >
                     <div className="d-flex pb-0" style={{ padding: ".8rem" }}>
                       <div className="cursor">
-                        <img
-                          src={User[0].relationship.avatar}
-                          width="32px"
-                          alt="profilr"
-                          className="rounded-circle"
-                        />
+                        <NavLink
+                          to={`/${User[0].login.username}`}
+                          className="text-decoration-none text-dark"
+                        >
+                          <img
+                            src={User[0].relationship.avatar}
+                            width="32px"
+                            alt="profilr"
+                            className="rounded-circle"
+                          />
+                        </NavLink>
                       </div>
                       <div className="p-2 py-0 my-0">
                         <p className="mb-0" style={{ fontSize: ".9rem" }}>
                           <span className="pe-2 fw-09500 comment-tag">
-                            <span>{props.data.username}</span>
+                            <NavLink
+                              to={`/${User[0].login.username}`}
+                              className="text-decoration-none text-dark"
+                            >
+                              <span>{props.data.username}</span>
+                            </NavLink>
                           </span>
                           {Loading ? (
                             <Skeleton width="300px" height="30px" />

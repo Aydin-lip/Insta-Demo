@@ -64,25 +64,13 @@ const Account = (props) => {
         </div>
         <div className="see-all-right">
           <p className="text-muted mb-0">Suggestions For You</p>
-          <a
-            href="#"
-            className="ms-auto text-decoration-none text-black"
-            style={{ fontSize: ".75rem" }}
-          >
+          <span className="ms-auto cursor" style={{ fontSize: ".75rem" }}>
             See All
-          </a>
+          </span>
         </div>
         {Users.map((u, index) => {
           if (index <= 4) {
-            return (
-              <User
-                key={index}
-                data={{
-                  Username: u.login.username,
-                  Profile: u.relationship.avatar,
-                }}
-              />
-            );
+            return <User key={index} data={u} />;
           }
         })}
         <Footer />

@@ -1,34 +1,33 @@
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
-import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
-import BoxsFollowing from "./BoxsFollowing";
-import Hashtags from "./hashtags";
-import Followers from "./followers";
+import BoxsFollowers from "./BoxsFollowers";
+import { NavLink, useNavigate } from "react-router-dom";
+import { RingLoader } from "react-spinners";
 import { connect } from "react-redux";
 
-const Following = (props) => {
+const Followers = (props) => {
   const [Show, setShow] = useState(false);
   const navigate = useNavigate();
   return (
     <>
       <div
-        className="ms-4 cursor d-none d-sm-block"
+        className="mx-3 cursor d-none d-sm-block"
         onClick={() => {
           setShow(true);
         }}
       >
         <NavLink
-          to={`/${props.Account.username}/following`}
+          to={`/${props.data.login.username}/followers`}
           className="text-decoration-none text-black"
         >
-          <span className="me-1 fw-500">{props.Following}</span>
-          <span>following</span>
+          <span className="me-1 fw-500">{props.Followers}</span>
+          <span>followers</span>
         </NavLink>
       </div>
 
       <div className="col-4 d-flex d-sm-none justify-content-center align-items-center">
         <NavLink
-          to={`/${props.Account.username}/followers`}
+          to={`/${props.data.login.username}/followers`}
           className="text-decoration-none text-black"
         >
           <div
@@ -38,8 +37,8 @@ const Following = (props) => {
               setShow(true);
             }}
           >
-            <span className="fw-500">{props.Following}</span>
-            <span className="text-muted">following</span>
+            <span className="fw-500">{props.Followers}</span>
+            <span className="text-muted">followers</span>
           </div>
         </NavLink>
       </div>
@@ -49,7 +48,7 @@ const Following = (props) => {
         show={Show}
         onHide={() => {
           setShow(false);
-          navigate(`/${props.Account.username}`, { replace: true });
+          navigate(`/${props.data.login.username}`, { replace: true });
         }}
       >
         <Modal.Body className="p-0">
@@ -66,14 +65,15 @@ const Following = (props) => {
               }}
             >
               <div className="border-bottom text-center p-2">
-                <span className="fw-500">Following</span>
-
+                <span className="fw-500">Followers</span>
                 <span
                   className="position-absolute cursor"
                   style={{ top: ".5rem", right: "1rem" }}
                   onClick={() => {
                     setShow(false);
-                    navigate(`/${props.Account.username}`, { replace: true });
+                    navigate(`/${props.data.login.username}`, {
+                      replace: true,
+                    });
                   }}
                 >
                   <svg
@@ -106,43 +106,15 @@ const Following = (props) => {
                   </svg>
                 </span>
               </div>
-              <div className="border-bottom d-flex">
-                <NavLink
-                  to={`/${props.Account.username}/following`}
-                  className="text-decoration-none text-black"
-                  style={{ width: "50%" }}
+              <div className="overflow-auto" style={{ height: "87%" }}>
+                <BoxsFollowers />
+
+                <div
+                  className="w-100 d-flex justify-content-center pt-3"
+                  style={{ height: "2rem" }}
                 >
-                  <button
-                    className="text-muted w-100 fw-500 p-2 border-0 bg-white btn-following active-btn-direct"
-                    onClick={(event) => {
-                      funcFollowingbtn(event);
-                    }}
-                  >
-                    People
-                  </button>
-                </NavLink>
-                <NavLink
-                  to={`/${props.Account.username}/hashtag_following`}
-                  className="text-decoration-none text-black"
-                  style={{ width: "50%" }}
-                >
-                  <button
-                    className="text-muted w-100 fw-500 p-2 border-0 bg-white btn-following"
-                    onClick={(event) => {
-                      funcFollowingbtn(event);
-                    }}
-                  >
-                    Hashtags
-                  </button>
-                </NavLink>
-              </div>
-              <div className="overflow-auto" style={{ height: "77%" }}>
-                {document.location.pathname ===
-                `/${props.Account.username}/following` ? (
-                  <BoxsFollowing />
-                ) : (
-                  <Hashtags />
-                )}
+                  <RingLoader size="20px" />
+                </div>
               </div>
             </div>
           </div>
@@ -150,17 +122,10 @@ const Following = (props) => {
       </Modal>
     </>
   );
-  function funcFollowingbtn(event) {
-    const btns = document.querySelectorAll(".btn-following");
-    btns.forEach((b) => {
-      b.classList.remove("active-btn-direct");
-    });
-    event.target.classList.add("active-btn-direct");
-  }
 };
 
 const mapStateToProps = (state) => ({
   Account: state.Information.Account,
 });
 
-export default connect(mapStateToProps)(Following);
+export default connect(mapStateToProps)(Followers);

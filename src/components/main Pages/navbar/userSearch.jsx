@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { SEARCH } from "../../../components/useStateManager/actions/actions";
 
 const UserSearch = (props) => {
@@ -18,13 +19,18 @@ const UserSearch = (props) => {
         <div className="px-3 py-2">
           <div className="d-flex align-items-center">
             <div onClick={setSearchFunc}>
-              <img
-                src={props.data.relationship.avatar}
-                width="44px"
-                height="44px"
-                className="rounded-circle"
-                alt="profile"
-              />
+              <NavLink
+                to={`/${props.data.login.username}`}
+                className="text-decoration-none text-black"
+              >
+                <img
+                  src={props.data.relationship.avatar}
+                  width="44px"
+                  height="44px"
+                  className="rounded-circle"
+                  alt="profile"
+                />
+              </NavLink>
             </div>
             <div className="ps-2 ms-1" onClick={setSearchFunc}>
               <span
@@ -36,7 +42,12 @@ const UserSearch = (props) => {
                   letterSpacing: "0.5px",
                 }}
               >
-                {props.data.login.username}
+                <NavLink
+                  to={`/${props.data.login.username}`}
+                  className="text-decoration-none text-black"
+                >
+                  {props.data.login.username}
+                </NavLink>
               </span>
               <p className="text-muted mb-0" style={{ fontSize: ".9rem" }}>
                 {props.data.name.first}

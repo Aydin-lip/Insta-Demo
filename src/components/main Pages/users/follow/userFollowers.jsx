@@ -4,18 +4,12 @@ import { NavLink } from "react-router-dom";
 import {
   SETfollowers,
   SETfollowing,
-} from "../../../../useStateManager/actions/actions";
+} from "../../../useStateManager/actions/actions";
 
 const UserFollowers = (props) => {
-  const [Followers, setFollowers] = useState(false);
   const [Following, setFollowing] = useState(false);
 
   useEffect(() => {
-    props.FollowersState.filter((fs) => {
-      if (fs === props.data.id) {
-        setFollowers(true);
-      }
-    });
     props.FollowingState.filter((fg) => {
       if (fg === props.data.id) {
         setFollowing(true);
@@ -23,15 +17,15 @@ const UserFollowers = (props) => {
     });
   }, []);
 
-  const setFollowingFunc = () => {
+  const FollowingFunc = () => {
     setFollowing(true);
     let fg = props.FollowingState.filter((f) => f !== props.data.id);
     props.changeFollowing([...fg, props.data.id]);
   };
-  const UnFollowersFunc = () => {
-    setFollowers(false);
-    let fs = props.FollowersState.filter((f) => f !== props.data.id);
-    props.changeFollowers(fs);
+  const UnFollowingFunc = () => {
+    setFollowing(false);
+    let fs = props.FollowingState.filter((f) => f !== props.data.id);
+    props.changeFollowing(fs);
   };
 
   return (
@@ -61,34 +55,26 @@ const UserFollowers = (props) => {
                 {props.data.login.username}
               </NavLink>
             </span>
-            {!Following ? (
-              <span
-                className="fs-08 text-primary fw-500 cursor"
-                onClick={setFollowingFunc}
-              >
-                . Follow
-              </span>
-            ) : null}
           </div>
           <span className="text-muted fs-08" style={{ marginTop: "-3px" }}>
             {props.data.name.first}
           </span>
         </div>
         <div className="ms-auto">
-          {Followers ? (
+          {Following ? (
             <button
               className="btn btn-outline-dark py-1 px-2 border fs-09 fw-500"
-              onClick={UnFollowersFunc}
+              onClick={UnFollowingFunc}
             >
-              Remove
+              Following
             </button>
           ) : (
             <>
               <button
-                className="btn btn-outline-dark py-1 px-2 border fs-09 fw-500"
-                disabled
+                className="btn btn-primary py-1 px-2 border fs-09 fw-500"
+                onClick={FollowingFunc}
               >
-                Removed
+                Follow
               </button>
             </>
           )}

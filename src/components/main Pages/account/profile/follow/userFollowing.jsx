@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { SETfollowing } from "../../../../useStateManager/actions/actions";
 
 const UserFollowing = (props) => {
@@ -28,17 +29,27 @@ const UserFollowing = (props) => {
     <>
       <div className="d-flex px-3 py-2">
         <div className="pt-1">
-          <img
-            src={props.data.relationship.avatar}
-            width="30"
-            height="30"
-            alt="profile"
-            className="rounded-circle cursor"
-          />
+          <NavLink
+            to={`/${props.data.login.username}`}
+            className="text-decoration-none text-black"
+          >
+            <img
+              src={props.data.relationship.avatar}
+              width="30"
+              height="30"
+              alt="profile"
+              className="rounded-circle cursor"
+            />
+          </NavLink>
         </div>
         <div className="ms-2 ps-1 d-flex flex-column">
           <span className="fw-500 fs-09 cursor">
-            {props.data.login.username}{" "}
+            <NavLink
+              to={`/${props.data.login.username}`}
+              className="text-decoration-none text-black"
+            >
+              {props.data.login.username}
+            </NavLink>
           </span>
           <span className="text-muted fs-08" style={{ marginTop: "-3px" }}>
             {props.data.name.first}

@@ -33,6 +33,9 @@ import MessagesGeneral from "./components/main Pages/directs/messages/messagesGe
 import Direct from "./components/main Pages/directs/direct/direct";
 import Explore from "./components/main Pages/explore/explore";
 import AllPosts from "./components/main Pages/account/profile/saved/allPosts";
+import UserProfile from "./components/main Pages/users/profile";
+import TaggedUsers from "./components/main Pages/users/tagged/tagged";
+import UserPosts from "./components/main Pages/users/posts/posts";
 
 import SetState from "./components/setState";
 
@@ -71,6 +74,22 @@ const App = (props) => {
           {props.Logo ? null : (
             <Routes>
               <Route path="/" element={<Protect />}>
+                {props.UsersAPI.map((u, i) => (
+                  <Route
+                    key={i}
+                    path={u.login.username}
+                    element={<UserProfile data={u} />}
+                  >
+                    <Route path="" element={<UserPosts data={u} />} />
+                    <Route path="followers" element={<UserPosts data={u} />} />
+                    <Route path="following" element={<UserPosts data={u} />} />
+                    <Route
+                      path="hashtag_following"
+                      element={<UserPosts data={u} />}
+                    />
+                    <Route path="tagged" element={<TaggedUsers />} />
+                  </Route>
+                ))}
                 <Route path="direct" element={<DirectInbox />}>
                   <Route path="inbox" element={<MessagesBox />} />
                   <Route path="inbox/general" element={<MessagesGeneral />} />
@@ -161,6 +180,7 @@ const mapStateToProps = (state) => ({
   ErrorUsers: state.Users.Error,
   ErrorPosts: state.Posts.Error,
   PostsAPI: state.Posts.Posts,
+  UsersAPI: state.Users.Users,
 });
 const mapDispatchToProps = (dispatch) => ({
   setLogo: (data) => dispatch(LOGO(data)),

@@ -5,6 +5,7 @@ import SwiperPost from "./swper";
 import { connect } from "react-redux";
 import { changeMODALmoreOption } from "../../../../useStateManager/actions/actions";
 import Comments from "./comments";
+import { NavLink } from "react-router-dom";
 
 const BoxPost = (props) => {
   let Users = props.UsersAPI.filter(
@@ -19,20 +20,23 @@ const BoxPost = (props) => {
           className="d-flex aligm-items-center border-bottom rounded-3"
           style={{ padding: ".8rem" }}
         >
-          <a href="#">
+          <NavLink
+            to={`/${Users[0].login.username}`}
+            className="text-decoration-none text-dark p-0"
+          >
             <img
               src={Users[0].relationship.avatar}
               width="32px"
               alt="profilr"
               className="rounded-circle"
             />
-          </a>
-          <a
-            href="#"
-            className="text-decoration-none text-black ps-2 pt-1 fw-09500"
+          </NavLink>
+          <NavLink
+            to={`/${Users[0].login.username}`}
+            className="text-decoration-none text-dark ps-t pt-1 fw-09500 p-0 ps-2"
           >
             <span>{Users[0].login.username}</span>
-          </a>
+          </NavLink>
           <div
             className="options-more ms-auto cursor"
             onClick={() => {
@@ -60,9 +64,12 @@ const BoxPost = (props) => {
           <LikeCommentShare data={props.data} />
           <div className="p-2 m-1 py-0 my-0">
             <p className="mb-0" style={{ fontSize: ".9rem" }}>
-              <a href="#" className="text-black pe-2 fw-09500 comment-tag">
+              <NavLink
+                to={`/${Users[0].login.username}`}
+                className="text-decoration-none text-dark d-inline-block p-0 pe-1 fw-09500 comment-tag"
+              >
                 {Users[0].login.username}
-              </a>
+              </NavLink>
               {props.data.infor.bio}
             </p>
           </div>
@@ -83,9 +90,7 @@ const BoxPost = (props) => {
             className="p-2 m-1 py-0 my-0"
             style={{ color: "#8e8e8e", fontSize: ".65rem" }}
           >
-            <span className="">
-              {Math.floor(Math.random() * 60)} MINUTES AGO
-            </span>
+            <span>{Math.floor(Math.random() * 60)} MINUTES AGO</span>
           </div>
           <SendComment data={props.data.id} />
         </div>

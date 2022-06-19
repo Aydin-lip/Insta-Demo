@@ -23,10 +23,7 @@ const Navbar = (props) => {
       props.change([false, true, false, false, false]);
     } else if (document.location.pathname.includes("/explore")) {
       props.change([false, false, false, true, false]);
-    } else if (
-      document.location.pathname.includes(`${props.Account.username}`) ||
-      document.location.pathname.includes("/account")
-    ) {
+    } else {
       props.change([false, false, false, false, false]);
     }
   }, []);

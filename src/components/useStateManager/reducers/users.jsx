@@ -12,7 +12,6 @@ const UsersAPIfunc = async () => {
       "https://randomapi.com/api/537773fbe318ed2c578fc584a9c09493"
     );
     initialState.Users = response.data.results[0].users;
-    console.log(initialState.Users);
   } catch (error) {
     initialState.Error = true;
   }
